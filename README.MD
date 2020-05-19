@@ -22,4 +22,27 @@ https://github.com/pmcp/ehbdev4werkstuk
 
 https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbkiNaw/edit?usp=sharing
 
- 
+ ## My approach:
+
+ 1. Cloning and setting up the workspace: 
+    - I clone the repository to my computer and open the folder in VS Code 
+    - I use the following command to install the dependancies delivered in the 'package.json' file:
+        ```
+        npm install
+        ```
+
+    - The workspace is ready to go!
+
+2. Basic HTML and SASS 
+    - First step was to fill the HTML with the main content
+
+    - I am going to use SASS as styling language
+        -  It requires a few more steps to get it started: 
+            1. create a .sass file 
+
+            2. Compile the code to a usable .css file 
+
+                - There are multiple ways of doing it, I use [the Koala App](http://koala-app.com/) because it is easy to use and refreshes automatically.
+                
+            3. Link the compiled .css file in your HTML
+3. It's scripting time!
