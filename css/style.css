@@ -23,7 +23,9 @@ body {
 main {
   width: 100%;
   background-color: white;
-  margin-bottom: 400px; }
+  margin-bottom: 400px;
+  box-shadow: 0 0 20px -12px #000;
+  height: 500px; }
 
 #navHeader {
   background-color: white;
