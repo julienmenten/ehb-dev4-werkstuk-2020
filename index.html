@@ -4,43 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Podium Aan Huis</title> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
      <!-- Navigatie  -->
-    <nav>
-        <section class="navTitle">
-            <a href="index.html">Podium Aan Huis</a>
-        </section>
-        <section class="navLinks">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#videos">Video's</a></li>
-                <li><a href="/over-podium-aan-huis">Over</a></li>
-            </ul>
-        </section>
-    </nav>
-     <!-- Header met info  -->
-    <header>
-
-    </header>
-    <!-- Main body met weergave van videos & filter  -->
+    <section id="navHeader">
+        <div class="navContainer">
+            <section class="navTitle">
+                <a href="index.html"><div>Podium Aan Huis</div></a>
+            </section>
+            <nav>
+                <section class="navLinks">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#videos">Video's</a></li>
+                        <li><a href="/over-podium-aan-huis">Over</a></li>
+                    </ul>
+                </section>
+            </nav>
+        </div>
+    </section>
+    <!-- Main body  -->
     <main>
-        <section class="mainFilter">
+        <!-- Header met info  -->
+        <header>
 
-        </section>
-        <section class="mainVideos">
-
-        </section>
+        </header>
     </main>
+       <!-- Sectie met videos en filtering  -->
+      <div>
+          <!-- Filter voor videos  -->
+        <section class="videosFilter">
+
+        </section>
+         <!-- Weergave van al de videos -->
+        <section class="videosResults">
+
+        </section>
+    </div>
     <!-- Footer met parallax! -->
     <footer>
-        <section class="footerLeft">
-
-        </section>
-        <section class="footerRight">
-
-        </section>
+        <div class="footerContainer">
+            <section class="footerLeft">
+            <a href="/gebruiksvoorwaarden"> Gebruiksvoorwaarden / Privacyverklaring</a>
+            </section>
+            <section class="footerRight">
+                <div>Deze website is mogelijk gemaakt door</div>
+                <div class="footerLinksContainer">
+                    <a href="https://www.cultuurconnect.be/"><img src="images/logo-cultuurconnect.png" alt=""></a>
+                    <a href="https://www.ditisvlaanderen.be/nl/verbeelding-werkt-0"><img src="images/logo-vlaanderen.png" alt=""></a></div>
+            </section>
+        </div>
     </footer>
 </body>
 </html>

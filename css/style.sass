@@ -1,4 +1,106 @@
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
 // Reset 
 *
     margin: 0
     padding: 0
+    box-sizing: border-box
+    font-family: sans-serif
+    font-family: 'Montserrat', sans-serif
+    font-weight: 300
+// Variables
+$action-color:  #fc2d75
+$heading-color: #130b2c
+$text-color: #666a70
+$background-grey: #e8edf4
+$rounded-border: 10px
+
+$footer-height: 400px
+
+// Main styling
+
+body 
+    font-size: 18px
+    color: $text-color
+    font-weight: 500
+    font-family: 'Montserrat', sans-serif
+    text-align: left
+    line-height: 28px
+    background-color: $background-grey
+
+main 
+    width: 100%
+    background-color: white
+    margin-bottom: $footer-height
+// Navigation styling
+#navHeader
+    background-color: white
+    position: sticky
+    top: 0
+    z-index: 99
+    width: 100% 
+    .navContainer
+        width: 1269px
+        max-width: 1296px
+        display: flex
+        margin: 0 auto
+        padding: 0 24px
+        align-items: center
+        justify-content: space-between
+        .navTitle 
+           
+            a 
+                flex: 1
+                align-self: auto
+    ul
+        list-style: none
+        display: flex
+    a 
+        color: $heading-color
+        text-decoration: none
+        padding: 28px 24px
+        font-size: 16px
+        font-weight: 600
+        &:hover
+            color: $action-color
+
+    nav 
+        display: flex
+        align-items: center
+
+// Header styling
+
+// Filter styling
+
+// Videos styling
+
+// Footer styling !PARALLAX 
+footer 
+    width: 100%
+    position: fixed
+    bottom: 0
+    padding: 100px 0 40px
+    .footerContainer
+        font-size: 16px
+        width: 100%
+        max-width: 1296px
+        margin: 0 auto 100px
+        padding: 0 24px
+        display: flex
+        justify-content: space-between
+
+        section 
+            width: 50%
+
+        .footerRight
+            text-align: center
+            .footerLinksContainer
+                margin-top: 20px 
+                display: flex
+                align-items: center
+            a 
+                text-align: center
+                width: 50%
+                max-height: 100px
+                img 
+                    max-height: 100px
+                    width: auto
