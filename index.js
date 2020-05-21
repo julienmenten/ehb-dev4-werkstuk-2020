@@ -113,7 +113,6 @@ app.get('/over-dit-initiatief', (req, res) => res.render('over-ons'))
 // Gebruiksvoorwaarden pagina
 app.get('/gebruiksvoorwaarden', (req, res) => res.render('gebruiksvoorwaarden')) 
 
-// 
 
 // Template pagina voor meer info over video
 
@@ -132,6 +131,7 @@ app.get('/video/:name', (req, res) => {
 	console.log(videoData.name);
 	res.render('video-template', {
 		title: videoData.name
+		// Add more data to send to front end template
 	})
 })
 

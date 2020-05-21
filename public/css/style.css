@@ -28,9 +28,9 @@ main {
   box-shadow: 0 0 20px -12px #000;
   padding-bottom: 40px; }
   main .mainContainer {
-    max-width: 940px;
+    max-width: 1296px;
     margin: auto;
-    padding-top: 50px; }
+    padding-top: 20px; }
     main .mainContainer h1 {
       margin-top: 0;
       margin-bottom: 100px; }
@@ -53,19 +53,36 @@ h2 {
 p, li {
   margin-bottom: 24px;
   font-size: 16px;
-  font-weight: 300; }
+  font-weight: 300;
+  line-height: 25px; }
 
 label, strong {
   font-weight: 800; }
+
+button, input[type=button] {
+  background-color: #fc2d75;
+  color: white;
+  font-family: "Montserrat";
+  margin-top: 24px;
+  transition: 0.15s;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase; }
+  button:hover, input[type=button]:hover {
+    box-shadow: 0 3px 10px -5px rgba(19, 11, 44, 0.5);
+    transform: translateY(-3px); }
 
 #navHeader {
   background-color: white;
   position: sticky;
   top: 0;
   z-index: 99;
-  width: 100%; }
+  width: 100%;
+  height: 85px;
+  display: flex;
+  align-items: center; }
   #navHeader .navContainer {
-    width: 1269px;
+    width: 1296px;
     max-width: 1296px;
     display: flex;
     margin: 0 auto;
@@ -78,7 +95,12 @@ label, strong {
       font-weight: 600; }
   #navHeader ul {
     list-style: none;
-    display: flex; }
+    display: flex;
+    padding: 0;
+    align-items: center;
+    height: 100%; }
+    #navHeader ul li {
+      margin: 0; }
   #navHeader a {
     text-decoration: none;
     padding: 28px 24px;
@@ -87,19 +109,6 @@ label, strong {
   #navHeader nav {
     display: flex;
     align-items: center; }
-
-#feedback {
-  width: 100%;
-  display: flex; }
-  #feedback section {
-    width: 50%; }
-    #feedback section div {
-      max-width: 648px; }
-  #feedback .feedbackExplanation {
-    color: white;
-    background-color: #fc2d75; }
-  #feedback .feedbackForm {
-    background-color: #e8edf4; }
 
 footer {
   z-index: -2;

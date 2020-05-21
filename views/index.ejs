@@ -6,6 +6,7 @@
     <title>Podium Aan Huis</title> 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
     <link rel = "stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
      <!-- Navigatie  -->
@@ -27,38 +28,75 @@
     </section>
     <!-- Main body  -->
     <main>
-        <!-- Header met info  -->
-        <header>
-
-        </header>
-       <!-- Sectie met videos en filtering  -->
-        <div>
-            <!-- Filter voor videos  -->
-            <section class="videosFilter">
-
-            </section>
-            <!-- Weergave van al de videos -->
-            <section class="videosResults">
-
-            </section>
-        </div>
-        <section id="feedback">
-            <div class="feedbackContainer">
-                <section class="feedbackExplanation">
-                    <div class="leftColumn">  
-                        <h2>Leun rustig achterover en geniet van de voorstelling!</h2>
-                        <p>We horen graag jouw feedback! Laat gerust een berichtje achter.</p>
-                        <p>Deze informatie wordt gebruikt om na te gaan of je interesse hebt in een online platform om voorstellingen te bekijken. Via e-mail stellen we je eventueel later nog vragen voor verder onderzoek naar een goed digitaal cultuurplatform.</p>
+        <div class="mainContainer">
+            <!-- Header met info  -->
+            <header>
+                <section class="headerImageContainer">
+                    <div>
+                        <img src="/images/banner.jpg">
+                    </div>
+                    <div class="creditContainer">
+                        <p class="creditText">Beeld uit Slumberland, Zonzo Compagnie
+                            © Dries Segers</p>
                     </div>
                 </section>
-                <section class="feedbackForm">
-                    <div class="righColumn">
+            </header>
+            <section class="mainDescription">
+                <section class="headerTextContainer">
+                    <h2>Haal voorstellingen naar je huiskamer </h2>
+                    <p>Bekijk gratis opnames van straffe podiumvoorstellingen voor jong en oud. Elke dag komen er nieuwe bij. Via Podium Aan Huis bundelen gezelschappen, kunst- en cultuurhuizen virtueel de krachten om jou te blijven ontroeren en ontspannen. Door de coronacrisis is de magie van de live beleving even onbereikbaar. Geen nood, want als de zalen moeten sluiten, dan komt de voorstelling gewoon naar je toe. Veel kijkplezier!</p>
+                    <p class="covidWarning">Momenteel onderzoeken we of Podium Aan Huis een toekomst heeft eens de coronamaatregelen zijn afgelopen. Zag je al een voorstelling? Deel jouw mening en vul deze <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU7hyzMG3I8w7zFWIZO-VgBfl-dTa1FW0oqUZT4OPU377WPg/viewform">bevraging</a> in (max. 5 min).</p>
+                </section>
+            </section>
+            
+        <!-- Sectie met videos en filtering  -->
+            <div>
+                <!-- Filter voor videos  -->
+                <section class="videosFilter">
 
-                    </div>
+                </section>
+                <!-- Weergave van al de videos -->
+                <section class="videosResults">
+
                 </section>
             </div>
-        </section>
-    </main>
+        </div>
+            <section id="feedback">
+                <div class="feedbackContainer">
+                    <section class="feedbackExplanation">
+                        <div class="leftColumn">  
+                            <h2><strong> Leun rustig achterover en geniet van de voorstelling!</strong></h2>
+                            <p style="white-space: pre-line">We horen graag jouw feedback! Laat gerust een berichtje achter.</p> <p> Deze informatie wordt gebruikt om na te gaan of je interesse hebt in een online platform om voorstellingen te bekijken. Via e-mail stellen we je eventueel later nog vragen voor verder onderzoek naar een goed digitaal cultuurplatform.</p>
+                        </div>
+                    </section>
+                    <section class="feedbackForm">
+                        <div class="righColumn">
+                            <section>
+                                <form action="">
+                                    <div class="formGroup">
+                                        <label for="watInitiatief">Wat vind je van dit initatief?</label>
+                                        <textarea type="text" id="watInitiatief"></textarea>
+                                    </div>
+                                    <div class="formGroup">
+                                        <label for="watVoorstellingen">Wat vind je van de voorstellingen?</label>
+                                        <textarea type="text" id="watVoorstellingen"></textarea>
+                                    </div>
+                                    <div class="formGroup">
+                                        <label for="e-mail">E-mail (optioneel)</label>
+                                        <input type="email" id="e-mail">
+                                    </div>
+                                    <div class="formGroup">
+                                        <input type="button" value="Verstuur">
+                                    </div>
+                                    
+                                </form>
+                            </section>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </main>
+    
     <!-- Footer met parallax! -->
     <footer>
         <div class="footerContainer">
@@ -75,6 +113,5 @@
     </footer>
 </body>
 <script src="bower_components\jquery\dist\jquery.min.js"></script>
-<script>
-</script>
+<script src="js/videos.js"></script>
 </html>

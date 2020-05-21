@@ -60,23 +60,29 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
             3. Link the compiled .css file in your HTML
             
 3. #### It's scripting time! - Back-End
-    - Using Express to make a webserver 
+    - Using Express to make a webserver & templating with EJS
 
-        In order for my website to work, I opted to work with [Express](https://expressjs.com/), which is a powerful web framework with Node that I know how to work with. 
+        In order for my website to work, I opted to work with [Express](https://expressjs.com/), which is a powerful web framework with Node that I know how to work with. To display my pages, I am using [EJS](https://ejs.co/).
         I wrote a simple webserver alongside the different pages that the website had: 
             
-
-            // Homepage 
-            app.get('/', (req, res) => res.sendFile(path.join(__dirname + '/index.html')));
-
+            // Folder van mijn templates/views kiezen
+            app.set('views', './views');
+            // De view engine initializeren op EJS
+            app.set('view engine', 'ejs');
             // Static files zoals CSS, IMAGES routen via epxress static
             app.use(express.static(path.join(__dirname, 'public')));
 
+
+            // Homepage index 
+            app.get('/', (req, res) => res.render('index'));
+
+
             // Over ons pagina
-            app.get('/over-dit-initiatief', (req, res) => res.sendFile(path.join(__dirname + '/pages/over-ons.html'))) 
+            app.get('/over-dit-initiatief', (req, res) => res.render('over-ons')) 
 
             // Gebruiksvoorwaarden pagina
-            app.get('/gebruiksvoorwaarden', (req, res) => res.sendFile(path.join(__dirname + '/pages/gebruiksvoorwaarden.html'))) 
+            app.get('/gebruiksvoorwaarden', (req, res) => res.render('gebruiksvoorwaarden')) 
+
 
             // Start server
             app.listen(port)
@@ -113,7 +119,10 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
                 };
                 // Send result page to user 
                 console.log(videoData.name);
-                res.send(videoData);
+                res.render('video-template', {
+                    title: videoData.name
+                    // Add more data to send to front end template
+                })
             })
 
         First, we have to decide which video we want to read more about. I simply pass through an **id**, or in this case, a **name**. "**:name**" Is called a **parameter**. I want to use that parameter to find the corresponding object in the list of entries. To make it easier to understand, I create a variable to use later called **videoName**. 
@@ -124,10 +133,12 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
 
                 for(let video of videoArray)
 
-        Once I found the corresponding object, I send the data to my template page to use it in my frond-end.
+        Once I found the corresponding object, I make a new object with all the information I want to display on the page and render it with EJS.
 
-            // code with result WIP
-
+            res.render('video-template', {
+                    title: videoData.name
+                    // Add more data to send to front end template
+                })
 
 4. #### Front-end: The return of the (Java)Script!
 - Creating a Video object

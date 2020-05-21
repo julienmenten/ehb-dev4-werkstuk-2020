@@ -1,0 +1,86 @@
+.headerImageContainer {
+  max-width: 1296px;
+  padding: 0 24px;
+  margin: auto;
+  overflow: hidden; }
+  .headerImageContainer img {
+    border-radius: 10px;
+    width: 100%;
+    vertical-align: middle; }
+  .headerImageContainer .creditContainer {
+    margin-top: 6px;
+    text-align: right; }
+    .headerImageContainer .creditContainer .creditText {
+      white-space: pre;
+      font-size: 12px;
+      font-style: italic;
+      font-weight: 200;
+      line-height: 18px; }
+
+.mainDescription {
+  max-width: 748px;
+  margin: auto; }
+  .mainDescription h2 {
+    line-height: 44px;
+    font-weight: 800;
+    font-size: 34px;
+    letter-spacing: -0.03em;
+    margin: 24px 0; }
+  .mainDescription .covidWarning {
+    background-color: #fc2d75;
+    border-radius: 10px;
+    color: white;
+    padding: 10px; }
+    .mainDescription .covidWarning a {
+      color: white; }
+      .mainDescription .covidWarning a:hover {
+        color: white; }
+
+#feedback {
+  width: 100%; }
+  #feedback .feedbackContainer {
+    display: flex;
+    width: 100%;
+    color: white; }
+    #feedback .feedbackContainer .feedbackExplanation {
+      background-color: #fc2d75;
+      width: 50%;
+      padding: 60px 10px 60px 0; }
+      #feedback .feedbackContainer .feedbackExplanation div {
+        max-width: 600px;
+        padding-left: 48px;
+        margin-left: auto;
+        text-align: left;
+        flex: 1; }
+      #feedback .feedbackContainer .feedbackExplanation h2 {
+        color: white;
+        font-size: 30px;
+        line-height: 42px; }
+      #feedback .feedbackContainer .feedbackExplanation p {
+        line-height: 25px; }
+    #feedback .feedbackContainer .feedbackForm {
+      background-color: #e8edf4;
+      width: 50%;
+      padding: 60px 24px 60px 24px; }
+      #feedback .feedbackContainer .feedbackForm div {
+        max-width: 600px;
+        margin-right: auto;
+        text-align: left;
+        flex: 1; }
+        #feedback .feedbackContainer .feedbackForm div .formGroup {
+          width: 100%; }
+          #feedback .feedbackContainer .feedbackForm div .formGroup textarea, #feedback .feedbackContainer .feedbackForm div .formGroup input {
+            width: 100%;
+            height: 60px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 24px; }
+          #feedback .feedbackContainer .feedbackForm div .formGroup label {
+            color: #130b2c;
+            font-size: 15px;
+            line-height: 20px;
+            display: block;
+            margin-bottom: 7px; }
+
+/*# sourceMappingURL=home.css.map */

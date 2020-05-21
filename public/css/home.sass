@@ -1,0 +1,93 @@
+@import variables
+
+// Header 
+.headerImageContainer
+    max-width: 1296px
+    padding: 0 24px 
+    margin: auto
+    overflow: hidden
+    img 
+        border-radius: $rounded-border
+        width: 100%
+        vertical-align: middle
+    .creditContainer
+        margin-top: 6px
+        text-align: right
+        .creditText
+            white-space: pre
+            font-size: 12px
+            font-style: italic
+            font-weight: 200
+            line-height: 18px
+    
+.mainDescription
+    max-width: 748px
+    margin: auto
+    h2 
+        line-height: 44px
+        font-weight: 800
+        font-size: 34px
+        letter-spacing: -.03em
+        margin: 24px 0
+    .covidWarning
+        background-color: $action-color
+        border-radius: $rounded-border
+        color: white
+        padding: 10px
+        a 
+            color: white
+            &:hover
+                color: white
+
+// Form styling
+// Home feedback styling
+
+#feedback
+    width: 100%
+    .feedbackContainer
+        display: flex
+        width: 100%
+        color: white
+        
+        .feedbackExplanation
+            background-color: $action-color
+            width: 50%
+            padding: 60px 10px 60px 0 
+            div
+                max-width: 600px
+                padding-left: 48px
+                margin-left: auto
+                text-align: left
+                flex: 1
+            h2 
+                color: white
+                font-size: 30px
+                line-height: 42px
+            p 
+                
+                line-height: 25px
+        .feedbackForm
+            background-color: $background-grey
+            width: 50%
+            padding: 60px 24px 60px 24px 
+          
+            div
+                max-width: 600px
+                margin-right: auto
+                text-align: left
+                flex: 1
+                .formGroup
+                    width: 100%
+                    textarea, input
+                        width: 100%
+                        height: 60px
+                        padding: 10px 20px
+                        border: none
+                        border-radius: $rounded-border
+                        margin-bottom: 24px
+                    label 
+                        color: $heading-color
+                        font-size: 15px
+                        line-height: 20px
+                        display: block
+                        margin-bottom: 7px
