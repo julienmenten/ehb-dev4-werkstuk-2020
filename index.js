@@ -16,16 +16,16 @@ let settings = {
    }
   };
 
-  fetch(apiUrl+'/items', settings)
-  .then(res => res.json())
-  .then((json) => {
-    console.log(`Got the response, there are ${json.items.length} entries`)
-  });
+fetch(apiUrl+'/items', settings)
+  	.then(res => res.json())
+  	.then((json) => {
+    	console.log(`Got the response, there are ${json.items.length} entries`)
+});
 
 
 
 var port = 8000;
-var serverUrl = "127.0.0.1";
+var serverUrl = "localhost";
 
 var http = require("http");
 var path = require("path");
@@ -35,7 +35,7 @@ var checkMimeType = true;
 console.log("Starting web server at " + serverUrl + ":" + port);
 
 http.createServer( function(req, res) {
-  console.log('starting server')
+  console.log('starting server');
 	var filename = "/index.html";
 	var ext = path.extname(filename);
 	var localPath = __dirname;
@@ -74,7 +74,7 @@ http.createServer( function(req, res) {
 		console.log("Invalid file extension detected: " + ext + " (" + filename + ")")
 	}
 
-}).listen(port, serverUrl);
+}).listen(port);
 
 function getFile(localPath, res, mimeType) {
 	fs.readFile(localPath, function(err, contents) {

@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
 // Reset 
 *
     box-sizing: border-box
@@ -33,11 +33,12 @@ body
             color: $action-color
 
 main 
+    z-index: 99
     width: 100%
     background-color: white
     margin-bottom: $footer-height
     box-shadow: 0 0 20px -12px #000
-    height: 500px
+    padding-bottom: 40px
 // Navigation styling
 #navHeader
     background-color: white
@@ -79,8 +80,27 @@ main
 
 // Videos styling
 
+// Home feedback styling
+
+#feedback
+    width: 100%
+    display: flex
+    section     
+        width: 50%
+        div
+            max-width: 648px
+    .feedbackExplanation
+        color: white
+        background-color: $action-color
+
+    .feedbackForm
+        background-color: $background-grey
+
+    
+ 
 // Footer styling !PARALLAX 
 footer 
+    z-index: -2
     width: 100%
     position: fixed
     bottom: 0
@@ -110,3 +130,5 @@ footer
                 img 
                     max-height: 100px
                     width: auto
+                    &:hover
+                        filter: $action-color 
