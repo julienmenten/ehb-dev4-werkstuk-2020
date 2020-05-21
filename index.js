@@ -7,7 +7,7 @@ const fetch = require('node-fetch');
 const apiKey = process.env.apiKey;
 const apiUrl = process.env.apiUrl;
 
-let settings = {
+/*let settings = {
   method: "Get",
   headers: {
     'Authorization': `Bearer ${apiKey}`, 
@@ -20,7 +20,7 @@ fetch(apiUrl+'/items', settings)
   	.then(res => res.json())
   	.then((json) => {
     	console.log(`Got the response, there are ${json.items.length} entries`)
-});
+});*/
 
 
 
@@ -30,11 +30,13 @@ var serverUrl = "localhost";
 var http = require("http");
 var path = require("path");
 var fs = require("fs");
+var express = require('express');
+var app = express();
 var checkMimeType = true;
 
 console.log("Starting web server at " + serverUrl + ":" + port);
 
-http.createServer( function(req, res) {
+/*http.createServer( function(req, res) {
   console.log('starting server');
 	var filename = "/index.html";
 	var ext = path.extname(filename);
@@ -90,4 +92,14 @@ function getFile(localPath, res, mimeType) {
 			res.end();
 		}
 	});
-}
+}*/
+
+// Express webserver
+
+// Homepage index 
+app.get('/', (req, res) => res.sendFile(path.join(__dirname + '/index.html')));
+
+// Over ons pagina
+app.get('/over-dit-initiatief', (req, res) => res.sendFile(path.join(__dirname + '/pages/over-ons.html'))) 
+// Start server
+app.listen(port)

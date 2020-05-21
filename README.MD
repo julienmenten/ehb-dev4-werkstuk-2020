@@ -45,4 +45,6 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
                 - There are multiple ways of doing it, I use [the Koala App](http://koala-app.com/) because it is easy to use and refreshes automatically.
                 
             3. Link the compiled .css file in your HTML
+            
 3. It's scripting time!
+    - Using Express to make a webserver 
