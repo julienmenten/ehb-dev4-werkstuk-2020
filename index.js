@@ -106,6 +106,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/over-dit-initiatief', (req, res) => res.sendFile(path.join(__dirname + '/pages/over-ons.html'))) 
 
 // Template pagina voor meer info over video
+app.get('/video/:name', (req, res) => {
+	const videoName =  req.params.name;
+	const data = require(__dirname + '/entries.json');
+	const videoArray = data.items;
+	var videoData;
+	// Find the correct video data by looping through all videos
+	for(let video of videoArray){
+		if(video.name == videoName){
+			videoData = video;
+		}
+	};
+	// Send result page to user 
+	console.log(videoData.name);
+	res.send(videoData);
+})
 
 // Eigen video API 
 const data = require(__dirname + '/entries.json')

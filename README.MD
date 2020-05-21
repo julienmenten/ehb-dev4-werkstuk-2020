@@ -22,9 +22,21 @@ https://github.com/pmcp/ehbdev4werkstuk
 
 https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbkiNaw/edit?usp=sharing
 
- ## My approach:
+## My approach
+### The current app
 
- 1. Cloning and setting up the workspace: 
+- Homepage: This simple homepage has multiple functions, it gives a small description of the service in the header, a catalog of all their videos alongside a practical search functionality & small form to ask for feedback. 
+
+- The video catalog and search function are on every page of the website. You can search by typing, by age group & by genre. There is a maximum of 15 videos displayed, to see the next 15, we have to navigate with the buttons on the bottom of the catalog, which DON'T refresh the page. 
+
+- When pressing on a video, we are transported to a page which regroups all the information of the video itself. 
+
+### Data, functions & Flow
+
+
+
+### Let's get to work! 
+ 1. #### Cloning and setting up the workspace: 
     - I clone the repository to my computer and open the folder in VS Code 
     - I use the following command to install the dependancies delivered in the 'package.json' file:
         ```
@@ -33,10 +45,10 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
 
     - The workspace is ready to go!
 
-2. Basic HTML and SASS 
+2. #### Basic HTML and SASS 
     - First step was to fill the HTML with the main content
 
-    - I am going to use SASS as styling language
+    - I am going to use [SASS](https://sass-lang.com/) as styling language
         -  It requires a few more steps to get it started: 
             1. create a .sass file 
 
@@ -46,14 +58,14 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
                 
             3. Link the compiled .css file in your HTML
             
-3. It's scripting time! - Back-End
+3. #### It's scripting time! - Back-End
     - Using Express to make a webserver 
-        - In order for my website to work, I opted to work with [Express](https://expressjs.com/), which is a powerful web framework with Node that I know how to work with. 
-        I wrote a simple webserver alongside the different pages that the website had: 
-            ```
-            // Express webserver
 
-            // Homepage index 
+        In order for my website to work, I opted to work with [Express](https://expressjs.com/), which is a powerful web framework with Node that I know how to work with. 
+        I wrote a simple webserver alongside the different pages that the website had: 
+            
+
+            // Homepage 
             app.get('/', (req, res) => res.sendFile(path.join(__dirname + '/index.html')));
 
             // Static files zoals CSS, IMAGES routen via epxress static
@@ -66,16 +78,18 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
 
             // Start server
             app.listen(port)
-            ``` 
-        - Alongside my webserver, I also wrote a short small API for all the video entries so that I can easily acces it on my front-end. This also allows me to change it later once, instead of having to hunt down the ajax call on each page of my front-end.
-            ```
+            
+        Alongside my webserver, I also wrote a short small API for all the video entries so that I can easily acces it on my front-end. This also allows me to change it later once, instead of having to hunt down the ajax call on each page of my front-end.
+
+            
             // Eigen video API 
             const data = require(__dirname + '/entries.json')
             app.get('/videoAPI', (req, res) => {
                 res.header("Content-Type",'application/json');
                 res.send(JSON.stringify(data));
             })
-            ```
+        
+        Each video has its own page, however to not have 100 html pages, I am going to use 1 template and fill the data with the desired information. 
 
-4. Return of the Script: Front-end
-5. Testing 
+4. #### Front-end: The return of the (Java)Script!
+5. #### Testing 
