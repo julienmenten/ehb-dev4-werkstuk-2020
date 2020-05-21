@@ -42,9 +42,40 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
 
             2. Compile the code to a usable .css file 
 
-                - There are multiple ways of doing it, I use [the Koala App](http://koala-app.com/) because it is easy to use and refreshes automatically.
+                There are multiple ways of doing it, I use [the Koala App](http://koala-app.com/) because it is easy to use and refreshes automatically.
                 
             3. Link the compiled .css file in your HTML
             
-3. It's scripting time!
+3. It's scripting time! - Back-End
     - Using Express to make a webserver 
+        - In order for my website to work, I opted to work with [Express](https://expressjs.com/), which is a powerful web framework with Node that I know how to work with. 
+        I wrote a simple webserver alongside the different pages that the website had: 
+            ```
+            // Express webserver
+
+            // Homepage index 
+            app.get('/', (req, res) => res.sendFile(path.join(__dirname + '/index.html')));
+
+            // Static files zoals CSS, IMAGES routen via epxress static
+            app.use(express.static(path.join(__dirname, 'public')));
+
+            // Over ons pagina
+            app.get('/over-dit-initiatief', (req, res) => res.sendFile(path.join(__dirname + '/pages/over-ons.html'))) 
+
+            // Template pagina voor meer info over video
+
+            // Start server
+            app.listen(port)
+            ``` 
+        - Alongside my webserver, I also wrote a short small API for all the video entries so that I can easily acces it on my front-end. This also allows me to change it later once, instead of having to hunt down the ajax call on each page of my front-end.
+            ```
+            // Eigen video API 
+            const data = require(__dirname + '/entries.json')
+            app.get('/videoAPI', (req, res) => {
+                res.header("Content-Type",'application/json');
+                res.send(JSON.stringify(data));
+            })
+            ```
+
+4. Return of the Script: Front-end
+5. Testing 

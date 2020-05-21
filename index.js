@@ -99,7 +99,19 @@ function getFile(localPath, res, mimeType) {
 // Homepage index 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname + '/index.html')));
 
+// Static files zoals CSS, IMAGES routen via epxress static
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Over ons pagina
 app.get('/over-dit-initiatief', (req, res) => res.sendFile(path.join(__dirname + '/pages/over-ons.html'))) 
+
+// Template pagina voor meer info over video
+
+// Eigen video API 
+const data = require(__dirname + '/entries.json')
+app.get('/videoAPI', (req, res) => {
+	res.header("Content-Type",'application/json');
+	res.send(JSON.stringify(data));
+})
 // Start server
 app.listen(port)
