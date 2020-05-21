@@ -27,6 +27,36 @@ main {
   margin-bottom: 400px;
   box-shadow: 0 0 20px -12px #000;
   padding-bottom: 40px; }
+  main .mainContainer {
+    max-width: 940px;
+    margin: auto;
+    padding-top: 50px; }
+    main .mainContainer h1 {
+      margin-top: 0;
+      margin-bottom: 100px; }
+
+h1 {
+  color: #130b2c;
+  font-weight: 800;
+  font-size: 50px;
+  margin-bottom: 12px;
+  line-height: 72px;
+  letter-spacing: -0.03em; }
+
+h2 {
+  color: #130b2c;
+  margin: 10px 0;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px; }
+
+p, li {
+  margin-bottom: 24px;
+  font-size: 16px;
+  font-weight: 300; }
+
+label, strong {
+  font-weight: 800; }
 
 #navHeader {
   background-color: white;

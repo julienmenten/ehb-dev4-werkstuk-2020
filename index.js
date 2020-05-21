@@ -95,22 +95,28 @@ function getFile(localPath, res, mimeType) {
 }*/
 
 // Express webserver
+// Templating aan de hand van EJS
+	// Folder van mijn templates/views kiezen
+	app.set('views', './views');
+	// De view engine initializeren op EJS
+	app.set('view engine', 'ejs');
+	// Static files zoals CSS, IMAGES routen via epxress static
+	app.use(express.static(path.join(__dirname, 'public')));
 
 // Homepage index 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname + '/index.html')));
+app.get('/', (req, res) => res.render('index'));
 
-// Static files zoals CSS, IMAGES routen via epxress static
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Over ons pagina
-app.get('/over-dit-initiatief', (req, res) => res.sendFile(path.join(__dirname + '/pages/over-ons.html'))) 
+app.get('/over-dit-initiatief', (req, res) => res.render('over-ons')) 
 
 // Gebruiksvoorwaarden pagina
-app.get('/gebruiksvoorwaarden', (req, res) => res.sendFile(path.join(__dirname + '/pages/gebruiksvoorwaarden.html'))) 
+app.get('/gebruiksvoorwaarden', (req, res) => res.render('gebruiksvoorwaarden')) 
 
 // 
 
 // Template pagina voor meer info over video
+
 app.get('/video/:name', (req, res) => {
 	const videoName =  req.params.name;
 	const data = require(__dirname + '/entries.json');
@@ -124,7 +130,9 @@ app.get('/video/:name', (req, res) => {
 	};
 	// Send result page to user 
 	console.log(videoData.name);
-	res.send(videoData);
+	res.render('video-template', {
+		title: videoData.name
+	})
 })
 
 // Eigen video API 
