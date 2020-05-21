@@ -35,6 +35,7 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
 
 
 
+
 ### Let's get to work! 
  1. #### Cloning and setting up the workspace: 
     - I clone the repository to my computer and open the folder in VS Code 
@@ -74,11 +75,14 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
             // Over ons pagina
             app.get('/over-dit-initiatief', (req, res) => res.sendFile(path.join(__dirname + '/pages/over-ons.html'))) 
 
-            // Template pagina voor meer info over video
+            // Gebruiksvoorwaarden pagina
+            app.get('/gebruiksvoorwaarden', (req, res) => res.sendFile(path.join(__dirname + '/pages/gebruiksvoorwaarden.html'))) 
 
             // Start server
             app.listen(port)
-            
+
+    -   API with all the videos 
+
         Alongside my webserver, I also wrote a short small API for all the video entries so that I can easily acces it on my front-end. This also allows me to change it later once, instead of having to hunt down the ajax call on each page of my front-end.
 
             
@@ -86,10 +90,47 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
             const data = require(__dirname + '/entries.json')
             app.get('/videoAPI', (req, res) => {
                 res.header("Content-Type",'application/json');
-                res.send(JSON.stringify(data));
+                res.send(JSON.stringify(data.items));
             })
-        
-        Each video has its own page, however to not have 100 html pages, I am going to use 1 template and fill the data with the desired information. 
+
+    - Creating dynamic pages for videos  
+
+        Each video has to have a webpage with extra information about the video. However, instead of making 100 different static webpages per video, which would take days of work, I am going to use **1 template** that will be filled with the data of the video we pressed on. 
+
+        Let's start decoding my code: 
+
+            // Template pagina voor meer info over video
+            app.get('/video/:name', (req, res) => {
+                const videoName =  req.params.name;
+                const data = require(__dirname + '/entries.json');
+                const videoArray = data.items;
+                var videoData;
+                // Find the correct video data by looping through all videos
+                for(let video of videoArray){
+                    if(video.name == videoName){
+                        videoData = video;
+                    }
+                };
+                // Send result page to user 
+                console.log(videoData.name);
+                res.send(videoData);
+            })
+
+        First, we have to decide which video we want to read more about. I simply pass through an **id**, or in this case, a **name**. "**:name**" Is called a **parameter**. I want to use that parameter to find the corresponding object in the list of entries. To make it easier to understand, I create a variable to use later called **videoName**. 
+
+            const videoName =  req.params.name;
+
+        I then use that variable to loop through the _entries.json file_. 
+
+                for(let video of videoArray)
+
+        Once I found the corresponding object, I send the data to my template page to use it in my frond-end.
+
+            // code with result WIP
+
 
 4. #### Front-end: The return of the (Java)Script!
+- Creating a Video object
+- Filling the catalog
+- Searching and filtering
 5. #### Testing 

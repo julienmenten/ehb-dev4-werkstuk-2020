@@ -105,6 +105,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Over ons pagina
 app.get('/over-dit-initiatief', (req, res) => res.sendFile(path.join(__dirname + '/pages/over-ons.html'))) 
 
+// Gebruiksvoorwaarden pagina
+app.get('/gebruiksvoorwaarden', (req, res) => res.sendFile(path.join(__dirname + '/pages/gebruiksvoorwaarden.html'))) 
+
+// 
+
 // Template pagina voor meer info over video
 app.get('/video/:name', (req, res) => {
 	const videoName =  req.params.name;
