@@ -82,5 +82,7 @@
             line-height: 20px;
             display: block;
             margin-bottom: 7px; }
+          #feedback .feedbackContainer .feedbackForm div .formGroup input[type=button] {
+            font-weight: 600; }
 
 /*# sourceMappingURL=home.css.map */

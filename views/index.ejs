@@ -50,14 +50,23 @@
             </section>
             
         <!-- Sectie met videos en filtering  -->
-            <div>
+            <div id="videos" style="margin-top: 24px;">
                 <!-- Filter voor videos  -->
                 <section class="videosFilter">
 
                 </section>
                 <!-- Weergave van al de videos -->
                 <section class="videosResults">
+                    <div class="videoCatalogContainer">
+                        <section class="videoCatalog">
 
+                        </section>
+                        <section class="videoCatalogNav">
+                            <button id="videoCatalogPrevious" onclick="navigateCatalog('prev')">Vorige</button>
+                            <p>Pagina <span id="videoCatalogCurrentPage">1</span> van <span id="videoCatalogMaxPages">9</span></p>
+                            <button id="videoCatalogNext" onclick="navigateCatalog('next')">Volgende</button>
+                        </section>
+                    </div>
                 </section>
             </div>
         </div>
@@ -113,5 +122,6 @@
     </footer>
 </body>
 <script src="bower_components\jquery\dist\jquery.min.js"></script>
+<script type="module" src="js/classes/Video.js"></script>
 <script src="js/videos.js"></script>
 </html>

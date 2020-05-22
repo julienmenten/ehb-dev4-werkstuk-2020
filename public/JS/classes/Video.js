@@ -1,6 +1,6 @@
 // Video class 
 
-class Video {
+export default class Video {
     constructor() {
         
     }
