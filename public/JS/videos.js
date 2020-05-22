@@ -106,7 +106,6 @@ function showSelectedGenres(selectedGenresArray, genres){
         })
         // Empty array to refill the page with our results
         pages = [];
-        console.log(filterResult)
         // Fill the pages with the results
         var videoCount = 0;
         var pageCount = 0
@@ -140,14 +139,43 @@ function createGenreButtons(genres){
     genres.forEach(genre => {
         let buttonLabel = genre.catName;
         let buttonAmount = genre["videos"].length
-
-        let newButton = document.createElement('button')
-        newButton.innerHTML = buttonLabel + " " + "("+ buttonAmount+")";
-        newButton.classList.add(filterBtn)
-        genreButtonsContainer.appendChild(newButton)
+        let newButtonGroup = document.createElement('div')
+        let newButtonLabel = document.createElement('label')
+        newButtonLabel.innerHTML = `${buttonLabel} (${buttonAmount})`
+        newButtonLabel.classList.add('filterBtn')
+        
+        let newButton = document.createElement('input')
+        newButtonLabel.htmlFor = buttonLabel;
+        newButton.type = "checkbox"
+        newButton.name = buttonLabel
+        newButton.value = buttonLabel
+        newButton.id = buttonLabel
+        newButton.style = "display:none"
+        newButton.onclick = function(){
+            setGenreActive(newButton)
+        }
+        newButtonGroup.appendChild(newButtonLabel)
+        newButtonGroup.appendChild(newButton)
+        genreButtonsContainer.appendChild(newButtonGroup)
     })
 }
-
+function setGenreActive(button){
+    console.log(button.innerHTML)
+    
+    var classes = button.classList
+    var activeState = false
+    console.log(classes.length)
+    if (button.className === 'active'){
+        button.className = 'inactive';
+        button.classList.remove('activeFilterBtn')
+        button.classList.add('filterBtn')
+      } else {
+        button.className = 'active';
+        button.classList.add('activeFilterBtn')
+        button.classList.add('filterBtn')
+      }
+    console.log(activeState)
+}
 // Verdelen over paginas van catalog
 function createPage(pagesArray, pageNumber) { 
     // Clear the container 
