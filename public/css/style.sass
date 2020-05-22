@@ -151,6 +151,59 @@ input[type=button]
     margin: auto
     input
         background-color: $background-grey
+#zoekbalkResults
+    display: grid
+    grid-auto-columns: 1fr
+    grid-row-gap: 36px
+    grid-template-rows: auto auto 
+    grid-template-columns: 1fr
+.searchResultCardcontainer
+    width: 100%   
+    background-color: $background-grey
+    border-radius: $rounded-border
+    transition: .15s ease-in
+    overflow: hidden
+    &:hover
+        box-shadow:  0 6px 6px -4px rgba(0, 0, 0, 0.2)
+        transform: translateY(-4px)
+    .searchResultVideoCard
+        display: grid
+        grid-template-columns: 0.65fr 1fr
+        overflow: hidden
+        text-decoration: none
+        .searchResultCardImageContainer
+            width: 100%
+            overflow: hidden 
+            display: flex
+            position: relative
+            object-fit: cover
+            align-items: center
+            div
+                height: 100%
+                width: 100%
+                background-color: rgba(black, 0.5 )
+                z-index: 5
+            img 
+                z-index: 1
+                width: 100%
+                position: absolute
+                left: 0
+        
+        .searchResultCardTextContainer
+            
+            padding: 10px 36px
+            h3 
+                
+                color: $heading-color
+                font-weight: 700
+                letter-spacing: -0.02em
+                line-height: 32px
+                font-size: 20px
+                margin: 0
+                margin-bottom: 10px
+            p 
+                margin: 0
+                
 // Videos styling
 #videos
     margin-bottom: 100px
@@ -198,7 +251,6 @@ input[type=button]
             height: 100%
             background-color: rgba(0, 0, 0, 0.7 )
             .videoThumbnailGenre
-                
                 background-color: white
                 padding: 3px 9px 3px 12px
                 font-size: 10px
@@ -229,13 +281,18 @@ input[type=button]
             letter-spacing: -0.02em
             line-height: 32px
             font-size: 20px
-            margin-bottom: 0
+            margin: 0
         p 
             margin: 0
             clear: none
             font-size: 14px
             line-height: 20px
             font-weight: 400
+        .videoThumbnailInfoDuration
+            p
+                font-size: 18px
+                line-height: 28px
+                font-weight: 400
     .videoThumbnailPlayBtn
         position: absolute
         left: 36px

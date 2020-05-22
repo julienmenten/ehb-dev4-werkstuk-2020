@@ -142,6 +142,57 @@ input[type=button] {
   .videosFilter input {
     background-color: #e8edf4; }
 
+#zoekbalkResults {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-row-gap: 36px;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr; }
+
+.searchResultCardcontainer {
+  width: 100%;
+  background-color: #e8edf4;
+  border-radius: 10px;
+  transition: 0.15s ease-in;
+  overflow: hidden; }
+  .searchResultCardcontainer:hover {
+    box-shadow: 0 6px 6px -4px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px); }
+  .searchResultCardcontainer .searchResultVideoCard {
+    display: grid;
+    grid-template-columns: 0.65fr 1fr;
+    overflow: hidden;
+    text-decoration: none; }
+    .searchResultCardcontainer .searchResultVideoCard .searchResultCardImageContainer {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      position: relative;
+      object-fit: cover;
+      align-items: center; }
+      .searchResultCardcontainer .searchResultVideoCard .searchResultCardImageContainer div {
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 5; }
+      .searchResultCardcontainer .searchResultVideoCard .searchResultCardImageContainer img {
+        z-index: 1;
+        width: 100%;
+        position: absolute;
+        left: 0; }
+    .searchResultCardcontainer .searchResultVideoCard .searchResultCardTextContainer {
+      padding: 10px 36px; }
+      .searchResultCardcontainer .searchResultVideoCard .searchResultCardTextContainer h3 {
+        color: #130b2c;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 32px;
+        font-size: 20px;
+        margin: 0;
+        margin-bottom: 10px; }
+      .searchResultCardcontainer .searchResultVideoCard .searchResultCardTextContainer p {
+        margin: 0; }
+
 #videos {
   margin-bottom: 100px; }
 
@@ -217,12 +268,16 @@ input[type=button] {
       letter-spacing: -0.02em;
       line-height: 32px;
       font-size: 20px;
-      margin-bottom: 0; }
+      margin: 0; }
     .videoCard .videoThumbnailInfoContainer p {
       margin: 0;
       clear: none;
       font-size: 14px;
       line-height: 20px;
+      font-weight: 400; }
+    .videoCard .videoThumbnailInfoContainer .videoThumbnailInfoDuration p {
+      font-size: 18px;
+      line-height: 28px;
       font-weight: 400; }
   .videoCard .videoThumbnailPlayBtn {
     position: absolute;

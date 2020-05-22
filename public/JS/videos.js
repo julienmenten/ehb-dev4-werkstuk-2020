@@ -33,12 +33,14 @@ async function loadVideos(ageGroup, filters){
                 let metadata = element["link-to-video"]["metadata"];
                 let name = element.name;
                 let author = metadata.author_name;
-                let duration = element["key-takeaways"];
+                let duration = element["video-length"];
                 let genre = element["genre-v2"];
                 let thumbnail = element.thumbnail.url;
                 let category = element.category
+                let excerpt = element.excerpt 
+                let recordedAt = element["recorded-at"]
                 
-                let newVideo = new Video(name, author, duration, genre, category, thumbnail)
+                let newVideo = new Video(name, author, duration, genre, category, thumbnail, excerpt, recordedAt)
                 newArray.push(newVideo)
                 allVideos.push(newVideo)
                 videoCount++;
@@ -51,12 +53,14 @@ async function loadVideos(ageGroup, filters){
                 let metadata = element["link-to-video"]["metadata"];
                 let name = element.name;
                 let author = metadata.author_name;
-                let duration = element["key-takeaways"];
+                let duration = element["video-length"];
                 let genre = element["genre-v2"];
                 let thumbnail = element.thumbnail.url;
                 let category = element.category
+                let excerpt = element.excerpt 
+                let recordedAt = element["recorded-at"]
     
-                let newVideo = new Video(name, author, duration, genre, category, thumbnail)
+                let newVideo = new Video(name, author, duration, genre, category, thumbnail, excerpt, recordedAt)
                 pages[pageCount].push(newVideo)
                 allVideos.push(newVideo)
                 videoCount++
@@ -153,22 +157,25 @@ function showSearchResults(query){
     resultContainer.innerHTML = ""
     allVideos.forEach(video => {
         let videoName = video.name
-        
-        if(videoName.includes(query)){
+        let lowerCaseName = videoName.toLowerCase()
+        if(lowerCaseName.includes(query.toLowerCase())){
             var newLink = document.createElement('div')
+            newLink.classList.add('searchResultCardcontainer')
             newLink.innerHTML = video.createSearchResult()
             resultContainer.appendChild(newLink)
         }
     })
 }
 class Video {
-    constructor(name, author, duration, genre, category, thumbnail) {
+    constructor(name, author, duration, genre, category, thumbnail, excerpt, recordedAt) {
         this.name = name;
         this.author = author;
         this.duration = duration;
         this.genre = genre;
         this.thumbnail = thumbnail;
         this.category = category
+        this.excerpt = excerpt
+        this.recordedAt = recordedAt
     }
     // Script dat kaartjes maakt per video
     createThumbnailInCatalog(){
@@ -177,10 +184,9 @@ class Video {
             <article>
                 <div class="videoThumbnailImageContainer">
                         <div>
-                        <p class="videoThumbnailGenre">${this.genre}</p>
-                    </div>
+                            <p class="videoThumbnailGenre">${this.genre}</p>
+                        </div>
                     <img src="${this.thumbnail}">
-                    
                 </div>
                
                 <div class="videoThumbnailInfoContainer">
@@ -189,8 +195,11 @@ class Video {
                     </div>
                     <div class="videoThumbnailInfo">
                         <h3>${this.name}</h3>
-                        <p>${this.author}</p>
-                        
+                        <p>${this.excerpt}</p>  
+                        ${this.checkForUndefined(this.recordedAt)}  
+                        <div class="v">
+                            ${this.checkForUndefined(this.duration)}
+                        </div>            
                     </div>
                 </div>
             </article>
@@ -199,11 +208,25 @@ class Video {
     }
     createSearchResult(){
         return `
-        <a href="http://localhost:8000/video/${this.name}" class="videoCard">
-                <div>
-                    <h3>${this.name}</h3> 
-                </div>
+        <a href="http://localhost:8000/video/${this.name}" class="searchResultVideoCard">
+            <div class="searchResultCardImageContainer">
+                
+                <img src="${this.thumbnail}">
+                <div></div>
+            </div>
+            <div class="searchResultCardTextContainer">
+                <h3>${this.name}</h3> 
+                <p>${this.excerpt}</p>
+                ${this.checkForUndefined(this.recordedAt)}     
+            </div>
         </a>`
+    }
+    checkForUndefined(toCheck){
+        if(toCheck == undefined || toCheck == "undefined"){
+            return ``;
+        }else{
+            return `<p>${toCheck}</p>`
+        }
     }
 }
 
