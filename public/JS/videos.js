@@ -34,7 +34,7 @@ async function loadVideos(ageGroup, filters){
                 let genre = element["genre-v2"];
                 let thumbnail = element.thumbnail.url;
                 let category = element.category
-    
+                
                 let newVideo = new Video(name, author, duration, genre, category, thumbnail)
                 newArray.push(newVideo)
 

@@ -106,13 +106,11 @@ function getFile(localPath, res, mimeType) {
 // Homepage index 
 app.get('/', (req, res) => res.render('index'));
 
-
 // Over ons pagina
 app.get('/over-dit-initiatief', (req, res) => res.render('over-ons')) 
 
 // Gebruiksvoorwaarden pagina
 app.get('/gebruiksvoorwaarden', (req, res) => res.render('gebruiksvoorwaarden')) 
-
 
 // Template pagina voor meer info over video
 
@@ -121,18 +119,31 @@ app.get('/video/:name', (req, res) => {
 	const data = require(__dirname + '/entries.json');
 	const videoArray = data.items;
 	var videoData;
+	var notFound = false
 	// Find the correct video data by looping through all videos
 	for(let video of videoArray){
 		if(video.name == videoName){
+			notFound = false;
 			videoData = video;
+			break;	// Loop verlaten eens ik gevondne heb wat ik nodig heb
+		}
+		else{
+			notFound = true;
 		}
 	};
 	// Send result page to user 
-	console.log(videoData.name);
-	res.render('video-template', {
-		title: videoData.name
-		// Add more data to send to front end template
-	})
+	if(notFound == false){
+		res.render('video-template', {
+			found: true,
+			title: videoData.name
+			// Add more data to send to front end template
+		})
+	}else{
+		res.render('video-template', {
+			found: false
+		})
+	}
+	
 })
 
 // Eigen video API 
