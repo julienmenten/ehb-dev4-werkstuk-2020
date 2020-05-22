@@ -2,9 +2,9 @@
 // Globale variabelen
 const url = "http://localhost:8000/videoAPI"
 const maxVideosInCatalog = 15;
-const pages = [];
+var pages = [];
 const allVideos = []
-var categories = [];
+var genres = [];
 var currentPage = 1;
 
 $(function(){
@@ -14,6 +14,7 @@ $(function(){
 function onLoad(){
     loadVideos("all", 'all')
     loadSavedPage()
+   
 }
 // Script dat alle videos laad vanuit de JSON/API
 async function loadVideos(ageGroup, filters){
@@ -66,26 +67,99 @@ async function loadVideos(ageGroup, filters){
                 videoCount++
             }
            
-            categories.push(element["genre-v2"])
-            categories = getUniqueArray(categories)
+            genres.push({catName: element["genre-v2"], 
+                            videos: []})
+            genres = getUniqueArray(genres, ['catName'])
 
         });
-        console.log(categories)
+        
+        sortToGenre(allVideos, genres)
         createPage(pages, 0)
+        createGenreButtons(genres)
+        showSelectedGenres(['theater', 'concert','comedy'], genres)
+        
     }).fail(function(a,b){
         console.log(a,b)
     }) 
 }
 
+async function sortToGenre(videos, categories){
+   await videos.forEach(video => {
+        categories.forEach(category => {
+            if(video.genre == category.catName){
+                category.videos.push(video)
+            }
+        })
+    })
+}
+
+function showSelectedGenres(selectedGenresArray, genres){
+    // First step is to find out if we have inserted a filter or not 
+    if(selectedGenresArray.length > 0){
+        let filterResult = []
+        genres.forEach(genre => {
+            selectedGenresArray.forEach(btn => {
+                if(genre.catName == btn){
+                    filterResult = filterResult.concat(genre.videos)
+                }
+            }) 
+        })
+        // Empty array to refill the page with our results
+        pages = [];
+        console.log(filterResult)
+        // Fill the pages with the results
+        var videoCount = 0;
+        var pageCount = 0
+        pages[pageCount] = []
+      
+        
+        filterResult.forEach(video =>{
+            let newArray = pages[pageCount]
+            if(videoCount != maxVideosInCatalog){ 
+                newArray.push(video)
+                videoCount++;
+            }else{
+                //reset
+                videoCount = 0;
+                pageCount ++; 
+                pages[pageCount] = []
+                pages[pageCount].push(video)
+                videoCount++
+            }
+        })
+        createPage(pages, 0)
+    }else{
+        console.log("No Genre chosen")
+        sortToGenre(allVideos, genres)
+        createPage(pages, 0)
+    }
+}
+
+function createGenreButtons(genres){
+    var genreButtonsContainer = document.getElementById('genreButtonsContainer')
+    genres.forEach(genre => {
+        let buttonLabel = genre.catName;
+        let buttonAmount = genre["videos"].length
+
+        let newButton = document.createElement('button')
+        newButton.innerHTML = buttonLabel + " " + "("+ buttonAmount+")";
+        newButton.classList.add(filterBtn)
+        genreButtonsContainer.appendChild(newButton)
+    })
+}
+
 // Verdelen over paginas van catalog
 function createPage(pagesArray, pageNumber) { 
+    // Clear the container 
+    var container = document.getElementById('videoCatalog')
+    container.innerHTML = "";
     // Display amount of pages on the bottom section of the catalog
     var pagesAmount = pagesArray.length
     $('#videoCatalogMaxPages').text(pagesAmount)
     // Display all videos of a page
     var selectedPage = pagesArray[pageNumber]
     selectedPage.forEach(video => {
-         $('.videoCatalog').append(video.createThumbnailInCatalog())
+        $('.videoCatalog').append(video.createThumbnailInCatalog())
     });
 }
 
@@ -118,7 +192,7 @@ function updateButtonState(currentPage){
     var nextButton = document.getElementById('videoCatalogNext')
     if(currentPage === 1){
         prevButton.disabled = true
-    }else if(currentPage == pages.length){
+    }else if(currentPage === pages.length){
         nextButton.disabled = true
     }else{
         prevButton.disabled = false
