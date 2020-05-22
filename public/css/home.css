@@ -69,20 +69,5 @@
         flex: 1; }
         #feedback .feedbackContainer .feedbackForm div .formGroup {
           width: 100%; }
-          #feedback .feedbackContainer .feedbackForm div .formGroup textarea, #feedback .feedbackContainer .feedbackForm div .formGroup input {
-            width: 100%;
-            height: 60px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            margin-bottom: 24px; }
-          #feedback .feedbackContainer .feedbackForm div .formGroup label {
-            color: #130b2c;
-            font-size: 15px;
-            line-height: 20px;
-            display: block;
-            margin-bottom: 7px; }
-          #feedback .feedbackContainer .feedbackForm div .formGroup input[type=button] {
-            font-weight: 600; }
 
 /*# sourceMappingURL=home.css.map */

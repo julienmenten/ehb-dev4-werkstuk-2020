@@ -83,6 +83,22 @@ input[type=button], button
     &:disabled
         background-color: #e8edf4
         color: $text-color
+
+textarea, input
+    width: 100%
+    height: 60px
+    padding: 10px 20px
+    border: none
+    border-radius: $rounded-border
+    margin-bottom: 24px
+label 
+    color: $heading-color
+    font-size: 15px
+    line-height: 20px
+    display: block
+    margin-bottom: 7px
+input[type=button]
+    font-weight: 600
 // Navigation styling
 
 #navHeader
@@ -130,7 +146,11 @@ input[type=button], button
 // Header styling
 
 // Filter styling
-
+.videosFilter
+    max-width: 740px
+    margin: auto
+    input
+        background-color: $background-grey
 // Videos styling
 #videos
     margin-bottom: 100px

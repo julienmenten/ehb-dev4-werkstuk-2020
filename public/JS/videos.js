@@ -2,11 +2,14 @@
 // Globale variabelen
 const url = "http://localhost:8000/videoAPI"
 const maxVideosInCatalog = 15;
-const pages = []
+const pages = [];
+const allVideos = []
+var categories = [];
 var currentPage = 1;
 
 $(function(){
    onLoad();
+   searchVideo()
 })
 function onLoad(){
     loadVideos("all", 'all')
@@ -37,7 +40,7 @@ async function loadVideos(ageGroup, filters){
                 
                 let newVideo = new Video(name, author, duration, genre, category, thumbnail)
                 newArray.push(newVideo)
-
+                allVideos.push(newVideo)
                 videoCount++;
             }else{
                 //reset
@@ -55,18 +58,21 @@ async function loadVideos(ageGroup, filters){
     
                 let newVideo = new Video(name, author, duration, genre, category, thumbnail)
                 pages[pageCount].push(newVideo)
-
+                allVideos.push(newVideo)
                 videoCount++
             }
+           
+            categories.push(element["genre-v2"])
+            categories = getUniqueArray(categories)
+
         });
+        console.log(categories)
         createPage(pages, 0)
-        // Navigation Buttons
-       
     }).fail(function(a,b){
         console.log(a,b)
-    })
-   
+    }) 
 }
+
 // Verdelen over paginas van catalog
 function createPage(pagesArray, pageNumber) { 
     // Display amount of pages on the bottom section of the catalog
@@ -127,7 +133,34 @@ function loadSavedPage(){
 // Script voor filteren van de kaarten
 
 // Script voor zoeken van video door typen
+function searchVideo(){
+    var searchBar = document.getElementById("zoekbalk");
+    searchBar.onkeyup = function(){
+        var searchQuery = searchBar.value
+        if(searchQuery == "" || searchQuery == " "){
+            let resultContainer = document.getElementById('zoekbalkResults')
+            resultContainer.innerHTML = ""
+        }else{
+            showSearchResults(searchQuery);
+        }
+      
+    }
+}
 
+function showSearchResults(query){
+    // result HAS to contain the query, wherever it is
+    let resultContainer = document.getElementById('zoekbalkResults')
+    resultContainer.innerHTML = ""
+    allVideos.forEach(video => {
+        let videoName = video.name
+        
+        if(videoName.includes(query)){
+            var newLink = document.createElement('div')
+            newLink.innerHTML = video.createSearchResult()
+            resultContainer.appendChild(newLink)
+        }
+    })
+}
 class Video {
     constructor(name, author, duration, genre, category, thumbnail) {
         this.name = name;
@@ -164,4 +197,29 @@ class Video {
            </a>
         `
     }
+    createSearchResult(){
+        return `
+        <a href="http://localhost:8000/video/${this.name}" class="videoCard">
+                <div>
+                    <h3>${this.name}</h3> 
+                </div>
+        </a>`
+    }
 }
+
+
+function getUniqueArray(arr=[], compareProps=[]) {
+    let modifiedArray= [];
+    if(compareProps.length === 0 && arr.length > 0)
+     compareProps.push(...Object.keys(arr[0]));
+       arr.map(item=> {
+     if(modifiedArray.length === 0){
+      modifiedArray.push(item);
+     }else {
+      if(!modifiedArray.some(item2=> 
+      compareProps.every(eachProps=> item2[eachProps] === item[eachProps])
+    )){modifiedArray.push(item);}
+   }
+    });return modifiedArray;
+   }
+
