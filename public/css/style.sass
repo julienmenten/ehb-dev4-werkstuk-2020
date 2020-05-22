@@ -208,14 +208,15 @@ input[type=button]
     flex-flow: row wrap 
     justify-content: start
     width: 100%
+.filterBtnWrapper
+    margin-right: 10px
+    margin-top: 0
 .filterBtn
     display: inline-block
-    margin-right: 10px
-    margin-bottom: 10px
-    margin-top: 0
+    letter-spacing: 1px
     font-weight: 400   
     background-color: $background-grey
-    border: 2px solid $background-grey
+    border: 2px solid $background-grey !important
     color: $heading-color
     font-size: 10px
     padding: 3px 9px 3px 12px
@@ -225,14 +226,13 @@ input[type=button]
     cursor: pointer
     text-transform: uppercase
     width: 100%
-    &:hover
-        transform: none
-        box-shadow: none
 
 .activeFilterBtn
     background-color: white
     color: $action-color
-    border-color: $action-color
+    border-color: $action-color !important
+    border: 2px solid
+
 // Videos styling
 #videos
     margin-bottom: 100px
