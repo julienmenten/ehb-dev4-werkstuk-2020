@@ -17,7 +17,11 @@
     <main>
         <div class="mainContainer">
             
-                
+            <%if(found == true){ %>
+                <h1><%=title%> - Podium Aan Huis</h1>
+            <%}else{ %>
+               
+            <%}%>
             <%- include('partials/videoCatalog.ejs') %>
         </div>
         
