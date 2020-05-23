@@ -16,12 +16,15 @@
     <%- include('partials/navigation.ejs') %>
     <main>
         <div class="mainContainer">
+            <section class="videoDetailContainer">
+                <% if(found == true){ %>
+                    <%- include('partials/video-detail.ejs') %>
+                <% } else{ %>
+                    <%- include('partials/not-found.ejs') %>
+                <% } %>
+            </section>
             
-            <%if(found == true){ %>
-                <h1><%=title%> - Podium Aan Huis</h1>
-            <%}else{ %>
-               
-            <%}%>
+
             <%- include('partials/videoCatalog.ejs') %>
         </div>
         

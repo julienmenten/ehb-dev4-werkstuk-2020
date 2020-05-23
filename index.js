@@ -136,7 +136,11 @@ app.get('/video/:name', (req, res) => {
 		console.log("Video: " + videoData.name)
 		res.render('video-template', {
 			found: true,
-			title: videoData.name
+			title: videoData.name,
+			metadata: videoData["link-to-video"].metadata,
+			videoLink:videoData["link-to-video"].metadata.html,
+			keyTakeaways: videoData["key-takeaways"],
+			description: videoData["video-notes"]
 			// Add more data to send to front end template
 		})
 	}else{
