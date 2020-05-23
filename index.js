@@ -133,12 +133,14 @@ app.get('/video/:name', (req, res) => {
 	};
 	// Send result page to user 
 	if(notFound == false){
+		console.log("Video: " + videoData.name)
 		res.render('video-template', {
 			found: true,
 			title: videoData.name
 			// Add more data to send to front end template
 		})
 	}else{
+		console.log("No video found")
 		res.render('video-template', {
 			found: false
 		})

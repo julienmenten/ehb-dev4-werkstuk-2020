@@ -9,22 +9,7 @@
 </head>
 <body>
      <!-- Navigatie  -->
-    <section id="navHeader">
-        <div class="navContainer">
-            <section class="navTitle">
-                <a href="/">Podium Aan Huis</a>
-            </section>
-            <nav>
-                <section class="navLinks">
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="#videos">Video's</a></li>
-                        <li><a href="/over-dit-initiatief">Over</a></li>
-                    </ul>
-                </section>
-            </nav>
-        </div>
-    </section>
+    <%- include('partials/navigation.ejs') %>
     <!-- Main body  -->
     <main>
         <!-- Header met info  -->
@@ -89,34 +74,11 @@
                     <p>Cultuurconnect kan deze Gebruiksvoorwaarden/Privacyverklaring altijd wijzigen zonder voorafgaande verwittiging aan de gebruiker. De wijzigingen gaan in direct na het plaatsen van de nieuwe Gebruiksvoorwaarden/Privacyverklaring op de website. Gelieve daarom steeds na te gaan of u de laatste versie hebt doorgelezen. Deze versie werd het laatst gewijzigd op 24/3/2020.</p>
             </section>
         <!-- Sectie met videos en filtering  -->
-            <div>
-                <!-- Filter voor videos  -->
-                <section class="videosFilter">
-
-                </section>
-                <!-- Weergave van al de videos -->
-                <section class="videosResults">
-
-                </section>
-            </div>
+        <%- include('partials/videoCatalog.ejs') %>
         </div>
     </main>
     <!-- Footer met parallax! -->
-    <footer>
-        <div class="footerContainer">
-            <section class="footerLeft">
-            <a href="/gebruiksvoorwaarden"> Gebruiksvoorwaarden / Privacyverklaring</a>
-            </section>
-            <section class="footerRight">
-                <div>Deze website is mogelijk gemaakt door</div>
-                <div class="footerLinksContainer">
-                    <a href="https://www.cultuurconnect.be/"><img src="/images/logo-cultuurconnect.png" alt=""></a>
-                    <a href="https://www.ditisvlaanderen.be/nl/verbeelding-werkt-0"><img src="/images/logo-vlaanderen.png" alt=""></a></div>
-            </section>
-        </div>
-    </footer>
+    <%- include('partials/footer.ejs') %>
 </body>
-<script src="bower_components\jquery\dist\jquery.min.js"></script>
-<script>
-</script>
+
 </html>

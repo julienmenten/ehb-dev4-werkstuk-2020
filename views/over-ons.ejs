@@ -10,45 +10,19 @@
 </head>
 <body>
      <!-- Navigatie  -->
-     <section id="navHeader">
-        <div class="navContainer">
-            <section class="navTitle">
-                <a href="/">Podium Aan Huis</a>
-            </section>
-            <nav>
-                <section class="navLinks">
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="#videos">Video's</a></li>
-                        <li><a href="/over-dit-initiatief">Over</a></li>
-                    </ul>
-                </section>
-            </nav>
-        </div>
-    </section>
+    <%- include('partials/navigation.ejs') %>
     <main>
         <div class="mainContainer">
-            <section>     
+            <section class="overOnsContainer">     
                 <h1>Over dit initiatief</h1>
                 <p>Podium Aan Huis is een tijdelijk platform met een bundeling van podiumvoorstellingen uit Vlaanderen en Brussel voor jong en oud. Dagelijks komen er nieuwe voorstellingen bij. Door de coronacrisis is de magie van de live beleving even onbereikbaar. Honderden voorstellingen zijn geannuleerd nu cultuurhuizen moeten sluiten. Via dit platform kan je tijdelijk toch genieten van straffe podiumvoorstellingen tot 31 augustus. In september hopen we iedereen massaal in de zalen terug te verwelkomen.</p>
                 <p>Dit platform is een initiatief van <a href="https://www.cultuurconnect.be/" target="_blank">Cultuurconnect</a> , in samenwerking met gezelschappen en cultuurhuizen. Cultuurconnect ondersteunt cultuurhuizen, bibliotheken, overheden, technologiespelers en artistieke initiatieven in hun digitale innovatie en dienstverlening. Cultuurconnect evalueert het project in een ruimer onderzoekstraject over artistieke digitale content.</p>
             </section>
+            <%- include('partials/videoCatalog.ejs') %>
         </div>
-      
+        
     </main>
      <!-- Footer met parallax! -->
-     <footer>
-        <div class="footerContainer">
-            <section class="footerLeft">
-            <a href="/gebruiksvoorwaarden"> Gebruiksvoorwaarden / Privacyverklaring</a>
-            </section>
-            <section class="footerRight">
-                <div>Deze website is mogelijk gemaakt door</div>
-                <div class="footerLinksContainer">
-                    <a href="https://www.cultuurconnect.be/"><img src="/images/logo-cultuurconnect.png" alt=""></a>
-                    <a href="https://www.ditisvlaanderen.be/nl/verbeelding-werkt-0"><img src="/images/logo-vlaanderen.png" alt=""></a></div>
-            </section>
-        </div>
-    </footer>
+     <%- include('partials/footer.ejs') %>
 </body>
 </html>
