@@ -8,6 +8,8 @@ var genres = [];
 const categories = ["volwassenen", "familie"]
 var currentPage = 1;
 
+var shownVideos = []
+
 $(function(){
    onLoad();
    searchVideo()
@@ -132,6 +134,7 @@ async function sortToGenre(videos, genres){
 }
 
 function showSelectedGenres(selectedGenresArray, genres){
+    shownVideos = []
     // First step is to find out if we have inserted a filter or not 
     if(selectedGenresArray.length > 0){
         let filterResult = []
@@ -164,15 +167,19 @@ function showSelectedGenres(selectedGenresArray, genres){
                 videoCount++
             }
         })
+        shownVideos = filterResult;
         resetCurrentPageNumber()
         createPage(pages, 0)
+        console.log(shownVideos)
     }else{
         console.log("No Genre chosen")
         resetCurrentPageNumber()
+        shownVideos = allVideos;
         sortToGenre(allVideos, genres)
         createPage(pages, 0)
-       
+        console.log(shownVideos)
     }
+    
 }
 
 function createGenreButtons(genres){
@@ -203,6 +210,7 @@ function createGenreButtons(genres){
         genreButtonsContainer.appendChild(newButtonGroup)
     })
 }
+// Create buttons for each genre
 function createCategoryButtons(categories){
     var categoriesButtonsContainer = document.getElementById('categoriesButtonsContainer')
     categories.forEach(genre => {
@@ -230,7 +238,7 @@ function createCategoryButtons(categories){
         categoriesButtonsContainer.appendChild(newButtonGroup)
     })
 }
-
+// Create buttons for each category
 function setGenreStatus(button){
     let label = button.id + "lbl"
     let htmlLabel = document.getElementById(label)

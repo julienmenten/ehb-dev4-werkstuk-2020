@@ -9,23 +9,8 @@
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-     <!-- Navigatie  -->
-    <section id="navHeader">
-        <div class="navContainer">
-            <section class="navTitle">
-                <a href="/">Podium Aan Huis</a>
-            </section>
-            <nav>
-                <section class="navLinks">
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="#videos">Video's</a></li>
-                        <li><a href="/over-dit-initiatief">Over</a></li>
-                    </ul>
-                </section>
-            </nav>
-        </div>
-    </section>
+    <!-- Navigation -->
+    <%- include('partials/navigation.ejs') %>
     <!-- Main body  -->
     <main>
         <div class="mainContainer">
@@ -48,49 +33,9 @@
                     <p class="covidWarning">Momenteel onderzoeken we of Podium Aan Huis een toekomst heeft eens de coronamaatregelen zijn afgelopen. Zag je al een voorstelling? Deel jouw mening en vul deze <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU7hyzMG3I8w7zFWIZO-VgBfl-dTa1FW0oqUZT4OPU377WPg/viewform">bevraging</a> in (max. 5 min).</p>
                 </section>
             </section>
-            
-        <!-- Sectie met videos en filtering  -->
-            <div id="videos" style="margin-top: 24px;">
-                <!-- Filter voor videos  -->
-                <section class="videosFilter">
-                    <div id="zoekBalkContainer">
-                        <label for="zoekbalk">Zoek</label>
-                        <input type="text" name="zoekbalk" id="zoekbalk">
-                        <div id="zoekbalkResultContainer">
-                            <section id="zoekbalkResults">
-
-                            </section>
-                        </div>
-                    </div>
-                    <div id="filterButtonsContainer">
-                        <section >
-                            <label for="categoriesButtonsContainer">Doelgroep</label>
-                            <div id="categoriesButtonsContainer"  class="filterButtonsContainer">
-
-                            </div>
-                        </section>
-                        <section>
-                            <label for="genreButtonsContainer">Genre</label>
-                            <div id="genreButtonsContainer" class="filterButtonsContainer">
-                            </div>
-                        </section>
-                    </div>
-                </section>
-                <!-- Weergave van al de videos -->
-                <section class="videosResults">
-                    <div class="videoCatalogContainer">
-                        <section class="videoCatalog" id="videoCatalog">
-
-                        </section>
-                        <section class="videoCatalogNav">
-                            <button id="videoCatalogPrevious" onclick="navigateCatalog('prev')">Vorige</button>
-                            <p>Pagina <span id="videoCatalogCurrentPage">1</span> van <span id="videoCatalogMaxPages">9</span></p>
-                            <button id="videoCatalogNext" onclick="navigateCatalog('next')">Volgende</button>
-                        </section>
-                    </div>
-                </section>
-            </div>
-        </div>
+            <!-- Video Catalog -->
+            <%- include('partials/videoCatalog.ejs') %>
+            <!-- Feedback -->
             <section id="feedback">
                 <div class="feedbackContainer">
                     <section class="feedbackExplanation">
@@ -128,19 +73,7 @@
         </main>
     
     <!-- Footer met parallax! -->
-    <footer>
-        <div class="footerContainer">
-            <section class="footerLeft">
-            <a href="/gebruiksvoorwaarden"> Gebruiksvoorwaarden / Privacyverklaring</a>
-            </section>
-            <section class="footerRight">
-                <div>Deze website is mogelijk gemaakt door</div>
-                <div class="footerLinksContainer">
-                    <a href="https://www.cultuurconnect.be/"><img src="/images/logo-cultuurconnect.png" alt=""></a>
-                    <a href="https://www.ditisvlaanderen.be/nl/verbeelding-werkt-0"><img src="/images/logo-vlaanderen.png" alt=""></a></div>
-            </section>
-        </div>
-    </footer>
+    <%- include('partials/footer.ejs') %>
 </body>
 <script src="bower_components\jquery\dist\jquery.min.js"></script>
 <script type="module" src="js/classes/Video.js"></script>
