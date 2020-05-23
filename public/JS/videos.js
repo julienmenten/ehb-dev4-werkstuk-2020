@@ -5,6 +5,7 @@ const maxVideosInCatalog = 15;
 var pages = [];
 const allVideos = []
 var genres = [];
+const categories = ["volwassenen", "familie"]
 var currentPage = 1;
 
 $(function(){
@@ -14,7 +15,7 @@ $(function(){
 function onLoad(){
     loadVideos("all", 'all')
     loadSavedPage()
-   
+    createCategoryButtons(categories)
 }
 // Script dat alle videos laad vanuit de JSON/API
 async function loadVideos(ageGroup, filters){
@@ -62,7 +63,7 @@ async function loadVideos(ageGroup, filters){
         sortToGenre(allVideos, genres)
         createPage(pages, 0)
         createGenreButtons(genres)
-      
+        
         
 
 }
@@ -120,9 +121,9 @@ function resetCatalog(data){
        
 }
 
-async function sortToGenre(videos, categories){
+async function sortToGenre(videos, genres){
    await videos.forEach(video => {
-        categories.forEach(category => {
+        genres.forEach(category => {
             if(video.genre == category.catName){
                 category.videos.push(video)
             }
@@ -163,12 +164,15 @@ function showSelectedGenres(selectedGenresArray, genres){
                 videoCount++
             }
         })
+        resetCurrentPageNumber()
         createPage(pages, 0)
     }else{
         console.log("No Genre chosen")
+        resetCurrentPageNumber()
         sortToGenre(allVideos, genres)
         createPage(pages, 0)
-    
+       
+    }
 }
 
 function createGenreButtons(genres){
@@ -199,6 +203,34 @@ function createGenreButtons(genres){
         genreButtonsContainer.appendChild(newButtonGroup)
     })
 }
+function createCategoryButtons(categories){
+    var categoriesButtonsContainer = document.getElementById('categoriesButtonsContainer')
+    categories.forEach(genre => {
+        let buttonLabel = genre;
+        let newButtonGroup = document.createElement('div')
+        newButtonGroup.classList.add('filterBtnWrapper')
+        // Label van knop aanmaken
+        let newButtonLabel = document.createElement('label')
+        newButtonLabel.id =  buttonLabel + 'lbl'
+        newButtonLabel.innerHTML = `${buttonLabel}`
+        newButtonLabel.classList.add('filterBtn')
+        // Checkbox maken
+        let newButton = document.createElement('input')
+        newButtonLabel.htmlFor = buttonLabel;
+        newButton.type = "checkbox"
+        newButton.name = buttonLabel
+        newButton.value = buttonLabel
+        newButton.id = buttonLabel
+        newButton.style = "display:none"
+        newButton.onchange = function(){
+            setCategorieStatus(newButton)
+        }
+        newButtonGroup.appendChild(newButtonLabel)
+        newButtonGroup.appendChild(newButton)
+        categoriesButtonsContainer.appendChild(newButtonGroup)
+    })
+}
+
 function setGenreStatus(button){
     let label = button.id + "lbl"
     let htmlLabel = document.getElementById(label)
@@ -211,10 +243,22 @@ function setGenreStatus(button){
     updateVideosCatalog()
 }
 
+function setCategorieStatus(button){
+    let label = button.id + "lbl"
+    let htmlLabel = document.getElementById(label)
+    if(button.checked){
+        
+        htmlLabel.classList.add('activeFilterBtn')
+    }else{
+        htmlLabel.classList.remove('activeFilterBtn')
+    }
+}
+
 async function updateVideosCatalog(){
     var buttonsList = document.getElementById('genreButtonsContainer')
     var buttonsContainers = buttonsList.childNodes;
     var checkedButtons = []
+    
     buttonsContainers.forEach(element => {
         var checkbox = element.childNodes[1]
         if(checkbox != undefined){
@@ -226,11 +270,12 @@ async function updateVideosCatalog(){
     });
     if(checkedButtons.length > 0){
         showSelectedGenres(checkedButtons, genres)
+       
     }else{
         var data = await ajaxVideos()
         resetCatalog( data);
     }
-    
+   
 }
 // Verdelen over paginas van catalog
 function createPage(pagesArray, pageNumber) { 
@@ -243,6 +288,7 @@ function createPage(pagesArray, pageNumber) {
     if(pagesAmount == 1 ){
         var nextButton = document.getElementById('videoCatalogNext')
         nextButton.disabled = true;
+        resetCurrentPageNumber()
     }else{
         var nextButton = document.getElementById('videoCatalogNext')
         nextButton.disabled = false;
@@ -253,9 +299,16 @@ function createPage(pagesArray, pageNumber) {
         $('.videoCatalog').append(video.createThumbnailInCatalog())
     });
 }
-
+// Bring currentPAge to 1 and update the button'state
+function resetCurrentPageNumber(){
+    currentPage = 1
+    var resetPagenumber = document.getElementById('videoCatalogCurrentPage')
+    resetPagenumber.innerHTML = currentPage
+    updateButtonState(currentPage)
+}
+// Use the buttons to navigate through the pages
 function navigateCatalog(direction){
-    var minimumPages = 0;
+    var minimumPages = 1;
     var maximumPages = pages.length;
     
     if(direction == "prev" && currentPage > minimumPages){
@@ -281,6 +334,7 @@ function navigateCatalog(direction){
 function updateButtonState(currentPage){
     var prevButton = document.getElementById('videoCatalogPrevious')
     var nextButton = document.getElementById('videoCatalogNext')
+    
     if(currentPage === 1){
         prevButton.disabled = true
     }else if(currentPage === pages.length){
@@ -289,6 +343,7 @@ function updateButtonState(currentPage){
         prevButton.disabled = false
         nextButton.disabled = false
     }
+   
 }
 // Pagina tussen de 2 knoppen updaten
 function updatePageNumber(currentPage){

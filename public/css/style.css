@@ -193,7 +193,7 @@ input[type=button] {
       .searchResultCardcontainer .searchResultVideoCard .searchResultCardTextContainer p {
         margin: 0; }
 
-#genreButtonsContainer {
+.filterButtonsContainer {
   display: flex;
   flex-flow: row wrap;
   justify-content: start;
