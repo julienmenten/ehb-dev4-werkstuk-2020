@@ -1,6 +1,10 @@
 
 <article id="videoContainer">
-    <%- metadata.html %>
+    <div class="videoWrapper">
+        <div class="embedContainer">
+            <%- metadata.html %>
+        </div>
+    </div> 
 </article>
 <article id="videoInfoContainer">
     
@@ -9,7 +13,10 @@
         <%- description %>
     </div>
     <div class="keyTakeawaysContainer">
-        <%- keyTakeaways %>
+        <div class="stickyContainer">
+            <%- keyTakeaways %>
+        </div>
+      
     </div>
    
 </article>
