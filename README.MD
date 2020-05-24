@@ -146,16 +146,30 @@ Flow:
 
             res.render('video-template', {
                     title: videoData.name
-                    // Add more data to send to front end template
+                    // Other data that will be sent to the ejs file to process
                 })
 
 4. #### Front-end: The return of the (Java)Script!
-- Pages and ejs structure
-    Homepage
-    video detail page
-    about us 
-    gebruikersvoorwaarden
+    For the front end I used ejs to render the different pages of the website. This allows me to build dynamic pages without having to copy code on all the webpages. 
+
+    I have 4 main pages: 
+    - The Homepage - index.ejs 
+    - Over ons - over-ons.ejs
+    - Gebruikersvoorwaarden - gebruikersvoorwaarden.ejs 
+    - The video page - video-template.ejs
+
+    Alongside my webpages, I used partials to easily re-use page sections
+    ![Partials image](https://github.com/julienmenten/ehb-dev4-werkstuk-2020/blob/master/README_pictures/partials.png)
 - Creating a Video object
 - Filling the catalog
 - Searching and filtering
 5. #### Testing 
+
+6. #### Starting the website
+    To browse the website, open the folder where the **index.js** file is located in with your terminal. Use the following command to start the webserver: 
+    ````
+    node index.js
+    ````
+    & browse to http://localhost:8000/
+
+    Have fun browsing! 
