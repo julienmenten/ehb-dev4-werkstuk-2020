@@ -67,11 +67,10 @@ async function loadVideos(ageGroup, filters){
         
         sortToGenre(allVideos, genres)
         createPage(pages, 0)
-        createGenreButtons(genres)
-        
-        
+        createGenreButtons(genres)    
 
 }
+// Ajax call naar /videoAPI
 async function ajaxVideos(){
    var videos; 
     await $.ajax({
@@ -208,6 +207,7 @@ function filterCatalog(filter, genres){
     })
     resetCurrentPageNumber()
     createPage(pages, 0)
+    showClearFilterButton()
 }
 
 // Functie om dynamisch knoppen aan te maken voor elke genre
@@ -268,8 +268,42 @@ function createCategoryButtons(categories){
         categoriesButtonsContainer.appendChild(newButtonGroup)
     })
 }
+// "Wis filters" knop vertonen
+function showClearFilterButton(){
+    var clearButton = document.getElementById('filtersWisKnop')
+    clearButton.style.display = "block"
+
+}
+// "Wis filters" knop verstoppen
+function hideClearFilterButton(){
+    var clearButton = document.getElementById('filtersWisKnop')
+    clearButton.style.display = "none"
+
+}
+
 function filtersWissen(){
-    
+    var genreButtonsList = document.getElementById('genreButtonsContainer')
+    var genreButtonsContainers = genreButtonsList.childNodes;
+    var categorieButtonsList = document.getElementById('categoriesButtonsContainer');
+    var categorieButtonsContainers = categorieButtonsList.childNodes;
+    console.log(categorieButtonsContainers)
+    genreButtonsContainers.forEach(btn => {
+       var checkbox = btn.childNodes[1]
+       console.log(btn)
+       checkbox.checked = false;
+       setFilterBtnStatus(checkbox)
+    })
+    categorieButtonsContainers.forEach(btn => {
+        var checkbox = btn.childNodes[1]
+        console.log(btn)
+        checkbox.checked = false;
+        setFilterBtnStatus(checkbox)
+     })
+    filter.categories = [];
+    filter.genres = [];
+    console.log(filter)
+    hideClearFilterButton();
+    updateVideosCatalog();
 }
 // Update de status van de knop en de catalog 
 function setFilterBtnStatus(button){
@@ -289,7 +323,7 @@ async function updateVideosCatalog(){
     var genreButtonsList = document.getElementById('genreButtonsContainer')
     var genreButtonsContainers = genreButtonsList.childNodes;
     var categorieButtonsList = document.getElementById('categoriesButtonsContainer');
-    categorieButtonsContainers = categorieButtonsList.childNodes;
+    var categorieButtonsContainers = categorieButtonsList.childNodes;
     //
     var filterGenres = filter.genres
     var filterCategories = filter.categories
@@ -328,6 +362,7 @@ async function updateVideosCatalog(){
     }else{
         var data = await ajaxVideos()
         resetCatalog(data);
+        hideClearFilterButton();
     }
 
 }
