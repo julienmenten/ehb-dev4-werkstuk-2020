@@ -159,7 +159,7 @@ Flow:
     - The video page - video-template.ejs
 
     Alongside my webpages, I used partials to easily re-use page sections
-    ![Partials image](https://github.com/julienmenten/ehb-dev4-werkstuk-2020/blob/master/README_pictures/partials.png)
+    ![Partials image](https://github.com/julienmenten/ehb-dev4-werkstuk-2020/blob/master/README_pictures/partials.png =200x)
 - Creating a Video object
 - Filling the catalog
 - Searching and filtering
