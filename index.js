@@ -143,6 +143,7 @@ app.get('/video/:name', (req, res) => {
 			description: videoData["video-notes"]
 			// Add more data to send to front end template
 		})
+	// In case there is no video matching with our query
 	}else{
 		console.log("No video found")
 		res.render('video-template', {

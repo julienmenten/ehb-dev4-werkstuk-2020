@@ -149,6 +149,32 @@ Flow:
                     // Other data that will be sent to the ejs file to process
                 })
 
+        Now let's imagine a use case where we want to find a video that wa saw a few months ago, however that video is not on our website anymore, we have to be able to handle that kind of errors. 
+        
+        Let's upgrade our previous function to handle unexisting or removed videos. 
+
+            // Send result page to user 
+            if(notFound == false){
+                console.log("Video: " + videoData.name)
+                res.render('video-template', {
+                    found: true,
+                    title: videoData.name,
+                    metadata: videoData["link-to-video"].metadata,
+                    videoLink:videoData["link-to-video"].metadata.html,
+                    keyTakeaways: videoData["key-takeaways"],
+                    description: videoData["video-notes"]
+                    // Add more data to send to front end template
+                })
+            // In case there is no video matching with our query
+            }else{
+                console.log("No video found")
+                res.render('video-template', {
+                    found: false
+                })
+            }
+
+        If our video has been found, it will send all the required data we want to display on the front-end and a **found** boolean for our front-end page to use. **found** will be used later to decide which partial we show on the video details page. 
+
 4. #### Front-end: The return of the (Java)Script!
     For the front end I used ejs to render the different pages of the website. This allows me to build dynamic pages without having to copy code on all the webpages. 
 
@@ -186,6 +212,19 @@ Flow:
 
     ![Edith](https://github.com/julienmenten/ehb-dev4-werkstuk-2020/blob/master/README_pictures/edith.png)
 
+    Let's come back to our handling of unexisting or removed videos. Remember how we sent an object with an argument called **found**, well now it's time to use it! 
+
+    With the help of EJS, we can create a simple IF-ELSE structure that will check the **found** argument. If found == true, then we get to see the page of the video we wanted to learn more of and watch.
+
+        <% if(found == true){ %>
+            <%- include('partials/video-detail.ejs') %>
+        <% } else{ %>
+            <%- include('partials/not-found.ejs') %>
+        <% } %>
+
+    If the video does not exist in our list of entries, we get redirected to a page with the following message:
+
+    ![Page not found](https://github.com/julienmenten/ehb-dev4-werkstuk-2020/blob/master/README_pictures/not_found.png)
 - Creating a Video object
 - Filling the catalog
 - Searching and filtering
