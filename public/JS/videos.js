@@ -3,9 +3,13 @@
 const url = "http://localhost:8000/videoAPI"
 const maxVideosInCatalog = 15;
 var pages = [];
-const allVideos = []
-var genres = [];
+const allVideos = [];
 const categories = ["volwassenen", "familie"]
+var genres = [];
+const filter = {
+    genres: [],
+    categories: []
+};
 var currentPage = 1;
 
 var shownVideos = []
@@ -21,7 +25,6 @@ function onLoad(){
 }
 // Script dat alle videos laad vanuit de JSON/API
 async function loadVideos(ageGroup, filters){
-   
         var data = await ajaxVideos();
         var videoCount = 0;
         var pageCount = 0;
@@ -79,10 +82,11 @@ async function ajaxVideos(){
         videos = data;
 
     }).fail(function(a,b){
-        console.log(a,b)
+        console.log(a,b);
     })
-    return videos 
+    return videos ;
 }
+
 function resetCatalog(data){
    
         var videoCount = 0;
@@ -133,55 +137,80 @@ async function sortToGenre(videos, genres){
     })
 }
 
-function showSelectedGenres(selectedGenresArray, genres){
-    shownVideos = []
-    // First step is to find out if we have inserted a filter or not 
-    if(selectedGenresArray.length > 0){
-        let filterResult = []
+// Filter the catalog -> filter is an object with 2 arrays with the name "categories" & "genres"
+function filterCatalog(filter, genres){
+    var testNumber = 0
+    var selectedCategories = filter.categories;
+    var selectedGenres = filter.genres
+    var filterResult = []
+    // Enkel Categories zijn geselecteerd
+    if(selectedCategories.length != 0 && selectedGenres.length == 0){
         genres.forEach(genre => {
-            selectedGenresArray.forEach(btn => {
+            var videos = genre.videos
+            videos.forEach(video => {
+                selectedCategories.forEach(category => {
+                    if(video.category == category){
+                        filterResult = filterResult.concat(video)
+                        testNumber++;
+                    }
+                })
+            })
+        })
+    }
+    // Enkel Genres zijn geselecteerd
+    else if(selectedCategories.length == 0 && selectedGenres.length != 0){
+        genres.forEach(genre => {
+            selectedGenres.forEach(btn => {
                 if(genre.catName == btn){
                     filterResult = filterResult.concat(genre.videos)
                 }
             }) 
         })
-        // Empty array to refill the page with our results
-        pages = [];
-        // Fill the pages with the results
-        var videoCount = 0;
-        var pageCount = 0
-        pages[pageCount] = []
-      
-        
-        filterResult.forEach(video =>{
-            let newArray = pages[pageCount]
-            if(videoCount != maxVideosInCatalog){ 
-                newArray.push(video)
-                videoCount++;
-            }else{
-                //reset
-                videoCount = 0;
-                pageCount ++; 
-                pages[pageCount] = []
-                pages[pageCount].push(video)
-                videoCount++
-            }
-        })
-        shownVideos = filterResult;
-        resetCurrentPageNumber()
-        createPage(pages, 0)
-        console.log(shownVideos)
-    }else{
-        console.log("No Genre chosen")
-        resetCurrentPageNumber()
-        shownVideos = allVideos;
-        sortToGenre(allVideos, genres)
-        createPage(pages, 0)
-        console.log(shownVideos)
     }
+    // Beide filtertypes zijn aangeuid 
+    else{
+        genres.forEach(genre => {
+            var videos = genre.videos
+            videos.forEach(video => {
+                selectedGenres.forEach(selectedGenre => {
+                    selectedCategories.forEach(selectedCategory => {
+                        if(video.category == selectedCategory && video.genre == selectedGenre){
+                            filterResult = filterResult.concat(video)
+                        }
+                    })
+                })
+            })
+        })
+    }
+
+    // Weergeven van gefilterde videos op de pagina 
+    // Empty array to refill the page with our results
+    pages = [];
+    // Fill the pages with the results
+    var videoCount = 0;
+    var pageCount = 0
+    pages[pageCount] = []
+  
     
+    filterResult.forEach(video =>{
+        let newArray = pages[pageCount]
+        if(videoCount != maxVideosInCatalog){ 
+            newArray.push(video)
+            videoCount++;
+        }else{
+            //reset
+            videoCount = 0;
+            pageCount ++; 
+            pages[pageCount] = []
+            pages[pageCount].push(video)
+            videoCount++
+        }
+    })
+    resetCurrentPageNumber()
+    createPage(pages, 0)
 }
 
+// Functie om dynamisch knoppen aan te maken voor elke genre
 function createGenreButtons(genres){
     var genreButtonsContainer = document.getElementById('genreButtonsContainer')
     genres.forEach(genre => {
@@ -203,14 +232,15 @@ function createGenreButtons(genres){
         newButton.id = buttonLabel
         newButton.style = "display:none"
         newButton.onchange = function(){
-            setGenreStatus(newButton)
+            setFilterBtnStatus(newButton)
         }
         newButtonGroup.appendChild(newButtonLabel)
         newButtonGroup.appendChild(newButton)
         genreButtonsContainer.appendChild(newButtonGroup)
     })
 }
-// Create buttons for each genre
+
+// Create buttons for each category
 function createCategoryButtons(categories){
     var categoriesButtonsContainer = document.getElementById('categoriesButtonsContainer')
     categories.forEach(genre => {
@@ -231,15 +261,18 @@ function createCategoryButtons(categories){
         newButton.id = buttonLabel
         newButton.style = "display:none"
         newButton.onchange = function(){
-            setCategorieStatus(newButton)
+            setFilterBtnStatus(newButton)
         }
         newButtonGroup.appendChild(newButtonLabel)
         newButtonGroup.appendChild(newButton)
         categoriesButtonsContainer.appendChild(newButtonGroup)
     })
 }
-// Create buttons for each category
-function setGenreStatus(button){
+function filtersWissen(){
+    
+}
+// Update de status van de knop en de catalog 
+function setFilterBtnStatus(button){
     let label = button.id + "lbl"
     let htmlLabel = document.getElementById(label)
     if(button.checked){
@@ -251,39 +284,52 @@ function setGenreStatus(button){
     updateVideosCatalog()
 }
 
-function setCategorieStatus(button){
-    let label = button.id + "lbl"
-    let htmlLabel = document.getElementById(label)
-    if(button.checked){
-        
-        htmlLabel.classList.add('activeFilterBtn')
-    }else{
-        htmlLabel.classList.remove('activeFilterBtn')
-    }
-}
-
 async function updateVideosCatalog(){
-    var buttonsList = document.getElementById('genreButtonsContainer')
-    var buttonsContainers = buttonsList.childNodes;
+    // Select the buttons container from the HTML page
+    var genreButtonsList = document.getElementById('genreButtonsContainer')
+    var genreButtonsContainers = genreButtonsList.childNodes;
+    var categorieButtonsList = document.getElementById('categoriesButtonsContainer');
+    categorieButtonsContainers = categorieButtonsList.childNodes;
+    //
+    var filterGenres = filter.genres
+    var filterCategories = filter.categories
+     // Reset the filter 
+    filterGenres = []
+    filterCategories = []
     var checkedButtons = []
-    
-    buttonsContainers.forEach(element => {
+ 
+    // Fill the filter with the selected buttons
+    genreButtonsContainers.forEach(element => {
         var checkbox = element.childNodes[1]
         if(checkbox != undefined){
            if(checkbox.checked){
              checkedButtons.push(checkbox.id)
+             filterGenres.push(checkbox.id)
+           }
+        }
+    });
+    categorieButtonsContainers.forEach(element => {
+        var checkbox = element.childNodes[1]
+        if(checkbox != undefined){
+           if(checkbox.checked){
+             checkedButtons.push(checkbox.id)
+             filterCategories.push(checkbox.id)
            }
         }
      
     });
+    // Plaats de waarden van de filter in het filter object 
+    filter.genres = filterGenres 
+    filter.categories = filterCategories
+
     if(checkedButtons.length > 0){
-        showSelectedGenres(checkedButtons, genres)
+        filterCatalog(filter, genres)
        
     }else{
         var data = await ajaxVideos()
-        resetCatalog( data);
+        resetCatalog(data);
     }
-   
+
 }
 // Verdelen over paginas van catalog
 function createPage(pagesArray, pageNumber) { 
