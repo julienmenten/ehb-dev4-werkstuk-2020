@@ -455,8 +455,7 @@ function searchVideo(){
             resultContainer.innerHTML = ""
         }else{
             showSearchResults(searchQuery);
-        }
-      
+        } 
     }
 }
 
