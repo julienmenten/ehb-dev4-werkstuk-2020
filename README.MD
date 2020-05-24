@@ -577,6 +577,18 @@ Flow:
 5. ### **Testing**  
 
 6. ### **Starting the website**
+    Before you launch the website a few steps are required! 
+    - Install the required node packages by opening the terminal in the same folder as the **index.js** file and running this command:  
+
+            npm install 
+
+    - Install Jquery: 
+
+            cd public
+
+            bower jquery
+     note: [bower](https://bower.io/) has to be installed on your machine. If you do not have Bower yet, please follow the instructions [here](https://bower.io/#install-bower).
+
     To browse the website, open the folder where the **index.js** file is located in with your terminal. Use the following command to start the webserver: 
     ````
     node index.js
