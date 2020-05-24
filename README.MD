@@ -23,6 +23,7 @@ https://github.com/pmcp/ehbdev4werkstuk
 https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbkiNaw/edit?usp=sharing
 
 ## My approach
+DISCLAIMER: My documentation and comments are both in English and Dutch, this is because my brain thinks in 3 languages at the same time and sometimes, it gets messy!
 ### The current app
 
 - Homepage: This simple homepage has multiple functions, it gives a small description of the service in the header, a catalog of all their videos alongside a practical search functionality & small form to ask for feedback. 
@@ -32,8 +33,13 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
 - When pressing on a video, we are transported to a page which regroups all the information of the video itself. 
 
 ### Data, functions & Flow
-
-
+Data:
+- Video object 
+Functions: 
+- Creating the catalog
+- Filtering the catalog
+- 
+Flow: 
 
 
 ### Let's get to work! 
@@ -46,7 +52,7 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
 
     - The workspace is ready to go!
 
-2. #### Basic HTML and SASS 
+2. #### HTML & CSS: Let's get SASS-y! 
     - First step was to fill the HTML with the main content
 
     - I am going to use [SASS](https://sass-lang.com/) as styling language
@@ -59,7 +65,7 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
                 
             3. Link the compiled .css file in your HTML
             
-3. #### It's scripting time! - Back-End
+3. #### Back-End - It's scripting time!
     - Using Express to make a webserver & templating with EJS
 
         In order for my website to work, I opted to work with [Express](https://expressjs.com/), which is a powerful web framework with Node that I know how to work with. To display my pages, I am using [EJS](https://ejs.co/).
@@ -141,6 +147,11 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
                 })
 
 4. #### Front-end: The return of the (Java)Script!
+- Pages and ejs structure
+    Homepage
+    video detail page
+    about us 
+    gebruikersvoorwaarden
 - Creating a Video object
 - Filling the catalog
 - Searching and filtering
