@@ -22,8 +22,8 @@ https://github.com/pmcp/ehbdev4werkstuk
 
 https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbkiNaw/edit?usp=sharing
 
-## My approach
-### The current app
+# My approach
+## The current app
 
 - Homepage: This simple homepage has multiple functions, it gives a small description of the service in the header, a catalog of all their videos alongside a practical search functionality & small form to ask for feedback. 
 
@@ -33,17 +33,38 @@ https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbki
 
 - Other pages: "Gebruikersvoorwaarden", "Over ons" and a "not-found" page. All these re-use the video catalog and filter.
 
-### Data, functions & Flow
+## Data, functions & Flow
 Data:
 - Video object 
+
+            Video{
+                - title: string
+                - author: string
+                - duration: string
+                - genre: string
+                - thumbnail: string
+                - category: string
+                - excpert: string
+                - recordedAt: string
+
+                - createThumbnailInCatalog()
+                - createSearchResult()
+            }
+
+            filter{
+                categories: [string]
+                genres: [string]
+            }
+
 Functions: 
 - Creating the catalog
 - Filtering the catalog
-- 
+- Searching for videos
+
 Flow: 
 
 
-### Let's get to work! 
+## Let's get to work! 
  1. ### **Cloning and setting up the workspace:**
     - I clone the repository to my computer and open the folder in VS Code 
     - I use the following command to install the dependancies delivered in the 'package.json' file:
