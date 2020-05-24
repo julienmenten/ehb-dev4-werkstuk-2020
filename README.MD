@@ -23,14 +23,15 @@ https://github.com/pmcp/ehbdev4werkstuk
 https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbkiNaw/edit?usp=sharing
 
 ## My approach
-DISCLAIMER: My documentation and comments are both in English and Dutch, this is because my brain thinks in 3 languages at the same time and sometimes, it gets messy!
 ### The current app
 
 - Homepage: This simple homepage has multiple functions, it gives a small description of the service in the header, a catalog of all their videos alongside a practical search functionality & small form to ask for feedback. 
 
 - The video catalog and search function are on every page of the website. You can search by typing, by age group & by genre. There is a maximum of 15 videos displayed, to see the next 15, we have to navigate with the buttons on the bottom of the catalog, which DON'T refresh the page. 
 
-- When pressing on a video, we are transported to a page which regroups all the information of the video itself. 
+- When pressing on a video, we surf to a page which regroups all the information of the video itself. 
+
+- Other pages: "Gebruikersvoorwaarden", "Over ons" and a "not-found" page. All these re-use the video catalog and filter.
 
 ### Data, functions & Flow
 Data:
@@ -61,10 +62,12 @@ Flow:
 
             2. Compile the code to a usable .css file 
 
-                There are multiple ways of doing it, I use [the Koala App](http://koala-app.com/) because it is easy to use and refreshes automatically.
+                There are multiple ways of doing it, I use [the Koala App](http://koala-app.com/) because it is easy to use and refreshes automatically. Extra tip: VS Code has a great extension. 
+                Both solutions also give you error messages when it compiles when it finds one.
                 
             3. Link the compiled .css file in your HTML
-            
+
+            4. I recreated the style of the original website as much as possible.
 3. #### Back-End - It's scripting time!
     - Using Express to make a webserver & templating with EJS
 
