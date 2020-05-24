@@ -160,6 +160,32 @@ Flow:
 
     Alongside my webpages, I used partials to easily re-use page sections
     ![Partials image](https://github.com/julienmenten/ehb-dev4-werkstuk-2020/blob/master/README_pictures/partials.png)
+
+    The **navigation** **footer** & **videoCatalog** are all used on all pages of the website. To display them on my webpages, I simply use this short in between my html code to call them up from the **partials** folder
+
+         <%- include('partials/PARTIAL_NAME.ejs') %>
+
+    A partial is plain HTML code. and when included with the **<%- include %>** command, is treated as such. 
+    
+    Ejs has multiple ways of interacting with HTML. We can also use it to verify our incomming data from the webserver. My best example: the video detail page.
+
+    Each video has it's own detail page, and like previously mentioned, making one for each video, might take a while. This is why I chose to use ejs in the first place! 
+    EJS allows me to use the response data my Node server sends back when I call it in the URL:
+
+        localhost:8000/video/VIDEO_NAME
+    
+    And use it later in my HTML: 
+
+       <title> <%= title %> - Podium Aan Huis </title>
+    
+    Example:
+
+        localhost:8000/video/Edith!
+
+    Will give me a web page with the desired information I want: 
+
+    ![Edith](https://github.com/julienmenten/ehb-dev4-werkstuk-2020/blob/master/README_pictures/edith.png)
+
 - Creating a Video object
 - Filling the catalog
 - Searching and filtering
